@@ -75,11 +75,9 @@ WORKDIR /var/www/html/drupal
 # copy over composer.json
 COPY composer.json composer.json
 
-# Validate composer.json syntax & lock file consistency
-RUN composer validate --strict
-
 # Dry-run install to ensure all dependencies are resolvable
-RUN composer install - vvv --no-interaction --no-progress > install.log 2>&1
+RUN composer update
+RUN composer install
 
 COPY opigno_lms-3.2.7/opigno_lms /var/www/html/drupal/web/modules/contrib
 

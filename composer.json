@@ -133,6 +133,8 @@
     },
     "config": {
         "allow-plugins": {
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
             "composer/installers": true,
             "kenwheelers/slick": true,
             "opigno/opigno_lms": true,
