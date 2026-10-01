@@ -1,0 +1,49 @@
+name: Sync to Azure DevOps
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-azure-devops
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out all branches and tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push branches and tags to Azure Repos
+        env:
+          AZURE_DEVOPS_REPO_URL: ${{ vars.AZURE_DEVOPS_REPO_URL }}
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "$AZURE_DEVOPS_REPO_URL" ]]; then
+            echo "::error::Set the AZURE_DEVOPS_REPO_URL repository variable."
+            exit 1
+          fi
+
+          if [[ -z "$AZURE_DEVOPS_PAT" ]]; then
+            echo "::error::Set the AZURE_DEVOPS_PAT repository secret."
+            exit 1
+          fi
+
+          auth_header="$(printf ':%s' "$AZURE_DEVOPS_PAT" | base64 -w 0)"
+          echo "::add-mask::$auth_header"
+          git -c "http.extraheader=AUTHORIZATION: basic $auth_header" push --prune \
+            "$AZURE_DEVOPS_REPO_URL" \
+            '+refs/remotes/origin/*:refs/heads/*' \
+            '+refs/tags/*:refs/tags/*'
