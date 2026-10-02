@@ -27,7 +27,7 @@ jobs:
       - name: Push branches and tags to Azure Repos
         env:
           AZURE_DEVOPS_REPO_URL: ${{ vars.AZURE_DEVOPS_REPO_URL }}
-          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+          AZURE_DEVOPS_PAT: ${{ secrets.PUSH_TO_AZURE }}
         run: |
           set -euo pipefail
 
