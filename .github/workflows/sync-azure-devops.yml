@@ -28,22 +28,23 @@ jobs:
         env:
           AZURE_DEVOPS_REPO_URL: ${{ vars.AZURE_DEVOPS_REPO_URL }}
           AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
-        run: |
-          set -euo pipefail
+    run: |
+      set -euo pipefail
 
-          if [[ -z "$AZURE_DEVOPS_REPO_URL" ]]; then
-            echo "::error::Set the AZURE_DEVOPS_REPO_URL repository variable."
-            exit 1
-          fi
+      if [[ -z "$AZURE_DEVOPS_REPO_URL" ]]; then
+        echo "::error::Set the AZURE_DEVOPS_REPO_URL repository variable."
+        exit 1
+      fi
 
-          if [[ -z "$AZURE_DEVOPS_PAT" ]]; then
-            echo "::error::Set the AZURE_DEVOPS_PAT repository secret."
-            exit 1
-          fi
+      if [[ -z "$AZURE_DEVOPS_PAT" ]]; then
+        echo "::error::Set the AZURE_DEVOPS_PAT repository secret."
+        exit 1
+      fi
 
-          auth_header="$(printf ':%s' "$AZURE_DEVOPS_PAT" | base64 -w 0)"
-          echo "::add-mask::$auth_header"
-          git -c "http.extraheader=AUTHORIZATION: basic $auth_header" push --prune \
-            "$AZURE_DEVOPS_REPO_URL" \
-            '+refs/remotes/origin/*:refs/heads/*' \
-            '+refs/tags/*:refs/tags/*'
+      AUTH_URL="${AZURE_DEVOPS_REPO_URL/https:\/\//https:\/\/PAT:$AZURE_DEVOPS_PAT@}"
+      echo "::add-mask::$AUTH_URL"
+  
+      git push --prune \
+        "$AUTH_URL" \
+        '+refs/remotes/origin/*:refs/heads/*' \
+        '+refs/tags/*:refs/tags/*'
