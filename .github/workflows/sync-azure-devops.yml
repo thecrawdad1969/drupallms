@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: sync-azure-devops
@@ -27,7 +27,7 @@ jobs:
       - name: Push branches and tags to Azure Repos
         env:
           AZURE_DEVOPS_REPO_URL: ${{ vars.AZURE_DEVOPS_REPO_URL }}
-          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+          AZURE_DEVOPS_PAT: ${{ secrets.PUSH_TO_AZURE }}
         run: |
           set -euo pipefail
 
@@ -41,9 +41,10 @@ jobs:
             exit 1
           fi
 
-          auth_header="$(printf ':%s' "$AZURE_DEVOPS_PAT" | base64 -w 0)"
-          echo "::add-mask::$auth_header"
-          git -c "http.extraheader=AUTHORIZATION: basic $auth_header" push --prune \
-            "$AZURE_DEVOPS_REPO_URL" \
+          AUTH_URL="${AZURE_DEVOPS_REPO_URL/https:\/\//https:\/\/PAT:$AZURE_DEVOPS_PAT@}"
+          echo "::add-mask::$AUTH_URL"
+
+          git push --prune \
+            "$AUTH_URL" \
             '+refs/remotes/origin/*:refs/heads/*' \
             '+refs/tags/*:refs/tags/*'
