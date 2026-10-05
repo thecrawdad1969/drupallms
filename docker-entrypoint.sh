@@ -55,11 +55,11 @@ DRUPAL_ADMIN_EMAIL="${DRUPAL_ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 #chmod -R 775 /var/www/html/drupal/web/sites/default/config
 
 # -----------------------------
-# 5. Install Drupal if not installed# 
+# 5. Install Drupal if not installed#
 # -----------------------------
-vendor/bin/drush status 
+vendor/bin/drush status
 if ! vendor/bin/drush status bootstrap | grep -q "Successful"; then
-    
+
     echo "Installing Drupal..."
     vendor/bin/drush site:install standard \
         --account-name="$DRUPAL_ADMIN_USER" \
@@ -95,24 +95,22 @@ vendor/bin/drush pm:list --status=disabled
 
 # Enable desired modules
 echo "ℹ️ Installing required modules..."
-MODULES=("address" "admin_toolbar" "aristotle" "backup_migrate" \
- "better_exposed_filters" "calendar" "captcha" "ckeditor_bgimage" "ckeditor_font" \
- "clientside_validation" "clientside_validation_jquery" "color" "colorbox" "commerce" \
- "config_rewrite" "core-recommended" "crm" "crm_membership" "css_editor" "ctools" "devel" \
- "dropzonejs" "duration_field" "dynamic_entity_reference" "easy_breadcrumb" "embed" "entity" \
- "entity_browser" "entity_embed" "entity_print" "entity_reference_revisions" "entitygroupfield" \
- "exif_orientation" "extra_field" "field_group" "fillpdf" "flexible_permissions" "ginvite" \
- "grequest" "group" "h5p" "health_check" "honeypot" "inline_entity_form" "jwt" "key" "mailsystem" \
- "media_entity_browser" "message" "message_notify" "mimemail" "name" "opigno_calendar" \
- "opigno_calendar_event" "opigno_catalog" "opigno_certificate" "opigno_class" "opigno_commerce" \
- "opigno_course" "opigno_cron" "opigno_dashboard" "opigno_forum" "opigno_group_manager" "opigno_ilt" \
- "opigno_learning_path" "opigno_like" "opigno_messaging" "opigno_mobile_app" "opigno_module" \
- "opigno_moxtra" "opigno_notification" "opigno_scorm" "opigno_search" "opigno_social" \
- "opigno_statistics" "opigno_tincan_api" "opigno_tour" "pathauto" "pdf" "popup_field_group" \
- "primary_entity_reference" "private_message" "profile" "queue_mail" "queue_ui" "quickedit" "rdf" \
- "recaptcha" "redirect" "restui" "role_delegation" "search_api" "simple_gmap" "state_machine" "tft" \
- "token" "token_filter" "twig_field_value" "ultimate_cron" "userprotect" "video" \
- "views_infinite_scroll" "views_templates" "webform")
+MODULES=("address", "admin_toolbar", "aristotle", "backup_migrate", "better_exposed_filters", "calendar", \
+"captcha", "ckeditor_bgimage", "ckeditor_font", "clientside_validation", "clientside_validation_jquery", \
+"color,", "colorbox", "commerce", "config_rewrite", "core-composer-scaffold", "core-project-message", \
+"core-recommended", "ctools", "css_editor", "devel", "dropzonejs", "duration_field", "dynamic_entity_reference", \
+"easy_breadcrumb", "embed", "entity", "entity_browser", "entity_embed", "entity_print", \
+"entity_reference_revisions", "entitygroupfield", "exif_orientation", "extra_field", "field_group", "fillpdf", \
+"flexible_permissions", "ginvite", "grequest", "group", "h5p", "health_check", "honeypot", "inline_entity_form", \
+"jquery_ui_touch_punch", "jwt", "key", "mailsystem", "message", "message_notify", "media_entity_browser", \
+"mimemail", "name", "opigno_calendar", "opigno_calendar_event", "opigno_catalog", "opigno_certificate,", \
+"opigno_class", "opigno_commerce", "opigno_course", "opigno_cron", "opigno_dashboard", "opigno_forum", "opigno" \
+"opigno_group_manager", "opigno_ilt", "opigno_learning_path", "opigno_like,", "opigno_messaging", \
+"opigno_mobile_app", "opigno_module", "opigno_moxtra,", "opigno_notification", "opigno_scorm", "opigno_search", \
+"opigno_social", "opigno_statistics", "opigno_tincan_api", "opigno_tour", "pathauto", "pdf", "popup_field_group", \
+"private_message", "profile", "queue_mail", "queue_ui", "quickedit", "rdf", "recaptcha", "redirect", "restui", \
+"role_delegation", "search_api", "simple_gmap", "state_machine", "tft", "token", "token_filter", \
+"twig_field_value", "ultimate_cron", "userprotect", "video", "views_infinite_scroll", "views_templates", "webform)
 
 for module in "${MODULES[@]}"; do
     # If then statement checking of module IS NOT enabled
