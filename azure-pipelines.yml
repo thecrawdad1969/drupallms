@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ## Docker
+=======
+# Docker
+>>>>>>> d4b7677ffb528e9fa4f9d85c8be677cf28e5d6d3
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
