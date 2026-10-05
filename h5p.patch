@@ -1,0 +1,13 @@
+diff --git a/src/H5PDrupal/H5PDrupal.php b/src/H5PDrupal/H5PDrupal.php
+index ba5b2ad6..92117c8b 100644
+--- a/src/H5PDrupal/H5PDrupal.php
++++ b/src/H5PDrupal/H5PDrupal.php
+@@ -1411,4 +1411,8 @@ class H5PDrupal implements \H5PFrameworkInterface {
+	 public function setContentHubMetadataChecked($time, $lang = 'en') {
+		 // TODO: Implement setContentHubMetadataChecked() method.
+	 }
++
++  public function resetHubOrganizationData() {
++    // TODO: Implement resetHubOrganizationData() method.
++  }
+ }
