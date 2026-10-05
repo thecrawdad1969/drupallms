@@ -1,58 +1,13 @@
 diff --git a/src/H5PDrupal/H5PDrupal.php b/src/H5PDrupal/H5PDrupal.php
-index d1a6eb0..0d24ed2 100644
+index ba5b2ad6..92117c8b 100644
 --- a/src/H5PDrupal/H5PDrupal.php
 +++ b/src/H5PDrupal/H5PDrupal.php
-@@ -93,6 +93,44 @@ class H5PDrupal implements \H5PFrameworkInterface {
-     return PublicStream::basePath() . '/' . $interface->getOption('default_path', 'h5p');
+@@ -1411,4 +1411,8 @@ class H5PDrupal implements \H5PFrameworkInterface {
+   public function setContentHubMetadataChecked($time, $lang = 'en') {
+     // TODO: Implement setContentHubMetadataChecked() method.
    }
-
-+    /**
-+   * Replace content hub metadata cache
-+   *
-+   * @param JsonSerializable $metadata Metadata as received from content hub
-+   * @param string $lang Language in ISO 639-1
-+   *
-+   * @return mixed
-+   */
-+  public function replaceContentHubMetadataCache($metadata, $lang){}
 +
-+  /**
-+   * Get content hub metadata cache from db
-+   *
-+   * @param  string  $lang Language code in ISO 639-1
-+   *
-+   * @return JsonSerializable Json string
-+   */
-+  public function getContentHubMetadataCache($lang = 'en'){}
-+
-+  /**
-+   * Get time of last content hub metadata check
-+   *
-+   * @param  string  $lang Language code iin ISO 639-1 format
-+   *
-+   * @return string|null Time in RFC7231 format
-+   */
-+  public function getContentHubMetadataChecked($lang = 'en'){}
-+
-+  /**
-+   * Set time of last content hub metadata check
-+   *
-+   * @param  int|null  $time Time in RFC7231 format
-+   * @param  string  $lang Language code iin ISO 639-1 format
-+   *
-+   * @return bool True if successful
-+   */
-+  public function setContentHubMetadataChecked($time, $lang = 'en'){}
-+
-   /**
-    * Prepares the generic H5PIntegration settings
-    */
-@@ -291,7 +329,7 @@ class H5PDrupal implements \H5PFrameworkInterface {
-   /**
-    * Implements fetchExternalData
-    */
--  public function fetchExternalData($url, $data = NULL, $blocking = TRUE, $stream = NULL) {
-+  public function fetchExternalData($url, $data = NULL, $blocking = TRUE, $stream = NULL, $fullData = false, $headers = [], $files = [], $method = 'POST') {
-
-     $options = [];
-     if (!empty($data)) {
++  public function resetHubOrganizationData() {
++    // TODO: Implement resetHubOrganizationData() method.
++  }
+ }

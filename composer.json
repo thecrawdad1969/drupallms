@@ -122,7 +122,7 @@
         "drupal/zeropoint": "^1.28",
         "drush/drush": "*",
         "enyo/dropzone": "v5.7.3",
-        "h5p/h5p-core": "1.27",
+        "h5p/h5p-core": "1.28",
         "kenwheelers/slick": "1.8.1",
         "mglaman/composer-drupal-lenient": "^1.0.0",
         "nanasess/bcmath-polyfill": "*",
