@@ -5,7 +5,7 @@ FROM php:8.4-apache AS drupal
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    unzip tree git jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget unzip apt-utils curl \
+    unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget unzip apt-utils curl \
     && apt-get clean \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo pdo_mysql gd mbstring xml zip bcmath \
@@ -82,7 +82,8 @@ RUN composer install
 COPY opigno_lms-3.2.7/opigno_lms /var/www/html/drupal/web/modules/contrib
 
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-patch -p1 < h5p.patch
+RUN patch -p1 < h5p.patch \
+&& rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
 
 RUN composer update drupal/core-recommended --with-dependencies
 
