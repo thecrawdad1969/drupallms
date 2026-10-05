@@ -16,6 +16,12 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get update && apt-get install -y nodejs \
     && apt-get clean
 
+# Install pdf.js (prebuilt version from npm)
+RUN mkdir -p /var/www/html/libraries/pdfjs \
+    && npm install pdfjs-dist@latest --prefix /tmp/pdfjs \
+    && cp -r /tmp/pdfjs/node_modules/pdfjs-dist/* /var/www/html/libraries/pdfjs/ \
+    && rm -rf /tmp/pdfjs
+
 # Create sshd_config
 RUN mkdir -p /var/run/sshd && \
     echo 'root:Dtag1984!' | chpasswd
@@ -34,6 +40,13 @@ RUN apt-get update && apt-get install -y supervisor && \
 
 # Copy Supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+RUN mkdir -p libraries/dropzone && \
+    curl -L https://github.com/enyo/dropzone/releases/download/v5.9.3/dropzone-5.9.3.zip -o /tmp/dropzone.zip && \
+    unzip /tmp/dropzone.zip -d /tmp/dropzone && \
+    cp /tmp/dropzone/dist/dropzone.min.js libraries/dropzone/dropzone.min.js && \
+    cp /tmp/dropzone/dist/dropzone.css libraries/dropzone/dropzone.css && \
+    rm -rf /tmp/dropzone /tmp/dropzone.zip
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite

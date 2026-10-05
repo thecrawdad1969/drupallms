@@ -57,9 +57,12 @@ DRUPAL_ADMIN_EMAIL="${DRUPAL_ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 # -----------------------------
 # 5. Install Drupal if not installed#
 # -----------------------------
-vendor/bin/drush status
-if ! vendor/bin/drush status bootstrap | grep -q "Successful"; then
+vendor/bin/drush status>/dev/null 2>&1
 
+# Check if drush command succeeded
+if [ $? -eq 0 ]; then
+    echo "Drupal already installed."    
+else
     echo "Installing Drupal..."
     vendor/bin/drush site:install standard \
         --account-name="$DRUPAL_ADMIN_USER" \
@@ -68,16 +71,16 @@ if ! vendor/bin/drush status bootstrap | grep -q "Successful"; then
         --site-name="$DRUPAL_SITE_NAME" \
         --db-url=mysql://thecrawdad87:Dtag1984!@drupal-mysql-srv.mysql.database.azure.com:3306/drupal_lms \
         -y
-else
-    echo "Drupal already installed."
 fi
 
 # -----------------------------
 # 6. composer audit and update
 # -----------------------------
-echo "ℹ️ Starting composer updates..."
+echo "ℹ️ checking to determine if drupal is outdated..."
 composer outdated "drupal/*"
+echo "ℹ️ Auditing Drupal..."
 composer audit  --no-interaction
+echo "ℹ️ Updating with all dependencies..."
 composer update drupal/* --with-all-dependencies
 
 
