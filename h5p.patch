@@ -5,7 +5,7 @@ index d1a6eb0..0d24ed2 100644
 @@ -93,6 +93,44 @@ class H5PDrupal implements \H5PFrameworkInterface {
      return PublicStream::basePath() . '/' . $interface->getOption('default_path', 'h5p');
    }
- 
+
 +    /**
 +   * Replace content hub metadata cache
 +   *
@@ -53,6 +53,6 @@ index d1a6eb0..0d24ed2 100644
     */
 -  public function fetchExternalData($url, $data = NULL, $blocking = TRUE, $stream = NULL) {
 +  public function fetchExternalData($url, $data = NULL, $blocking = TRUE, $stream = NULL, $fullData = false, $headers = [], $files = [], $method = 'POST') {
- 
+
      $options = [];
      if (!empty($data)) {
