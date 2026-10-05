@@ -81,10 +81,12 @@ RUN composer install
 
 COPY opigno_lms-3.2.7/opigno_lms /var/www/html/drupal/web/modules/contrib
 
-COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
-    patch -p1 < h5p.patch \
-    && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
+#code below is an exampe of how a patch would be applied
+
+#COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
+#RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
+    #patch -p1 < h5p.patch \
+   # && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
 
 RUN composer update drupal/core-recommended --with-dependencies
 
