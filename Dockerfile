@@ -41,8 +41,8 @@ RUN apt-get update && apt-get install -y supervisor && \
 # Copy Supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN mkdir -p libraries/dropzone && \
-    curl -L https://github.com/enyo/dropzone/releases/download/v5.9.3/dropzone-5.9.3.zip -o /tmp/dropzone.zip && \
+RUN mkdir -p /var/www/html/libraries/dropzone && \
+    curl -L https://github.com/enyo/dropzone/archives/refs/tags/v5.9.3.zip -o /tmp/dropzone.zip && \
     unzip /tmp/dropzone.zip -d /tmp/dropzone && \
     cp /tmp/dropzone/dist/dropzone.min.js libraries/dropzone/dropzone.min.js && \
     cp /tmp/dropzone/dist/dropzone.css libraries/dropzone/dropzone.css && \
