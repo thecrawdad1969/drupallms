@@ -41,8 +41,8 @@ RUN apt-get update && apt-get install -y supervisor && \
 # Copy Supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN mkdir -p /var/www/html/libraries/dropzone && \
-    cp -r dropzone /tmp/dropzone && \
+RUN mkdir -p /var/www/html/libraries/dropzone
+COPY -r /dropzone /tmp/dropzone && \
     cp /tmp/dropzone/dist/dropzone.min.js libraries/dropzone/dropzone.min.js && \
     cp /tmp/dropzone/dist/dropzone.css libraries/dropzone/dropzone.css && \
     rm -rf /tmp/dropzone
