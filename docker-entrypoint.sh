@@ -61,7 +61,7 @@ vendor/bin/drush status>/dev/null 2>&1
 
 # Check if drush command succeeded
 if [ $? -eq 0 ]; then
-    echo "Drupal already installed."    
+    echo "Drupal already installed."
 else
     echo "Installing Drupal..."
     vendor/bin/drush site:install standard \
@@ -113,7 +113,7 @@ MODULES=("address", "admin_toolbar", "aristotle", "backup_migrate", "better_expo
 "opigno_social", "opigno_statistics", "opigno_tincan_api", "opigno_tour", "pathauto", "pdf", "popup_field_group", \
 "private_message", "profile", "queue_mail", "queue_ui", "quickedit", "rdf", "recaptcha", "redirect", "restui", \
 "role_delegation", "search_api", "simple_gmap", "state_machine", "tft", "token", "token_filter", \
-"twig_field_value", "ultimate_cron", "userprotect", "video", "views_infinite_scroll", "views_templates", "webform)
+"twig_field_value", "ultimate_cron", "userprotect", "video", "views_infinite_scroll", "views_templates", "webform")
 
 for module in "${MODULES[@]}"; do
     # If then statement checking of module IS NOT enabled
