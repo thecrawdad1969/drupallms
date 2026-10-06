@@ -121,6 +121,7 @@
         "drupal/webform": "^6.3",
         "drupal/zeropoint": "^1.28",
         "drush/drush": "*",
+        "friendsofphp/php-cs-fixer": "*"
         "enyo/dropzone": "v5.7.3",
         "h5p/h5p-core": "1.28",
         "kenwheelers/slick": "1.8.1",

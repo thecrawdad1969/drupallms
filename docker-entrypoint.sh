@@ -143,10 +143,12 @@ vendor/bin/drush pm:list --status=disabled
 #vendor/bin/drush updb -y
 
 # -----------------------------
-# 9. Clear caches
+# 9. Clear caches & fixing php
 # -----------------------------
 echo "Clearing caches..."
 vendor/bin/drush cr
+
+vendor/bin/php-cs-fixer fix
 
 # -----------------------------
 # 10. configure phpmyadmin

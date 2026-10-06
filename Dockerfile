@@ -55,6 +55,10 @@ RUN a2enmod rewrite
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
+#Copy php-cs-fixer rules
+COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
+
+
 # Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
