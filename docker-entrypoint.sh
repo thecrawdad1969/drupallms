@@ -100,8 +100,8 @@ vendor/bin/drush pm:list --status=disabled
 echo "ℹ️ Installing required modules..."
 MODULES=("address", "admin_toolbar", "aristotle", "backup_migrate", "better_exposed_filters", "calendar", \
 "captcha", "ckeditor_bgimage", "ckeditor_font", "clientside_validation", "clientside_validation_jquery", \
-"color,", "colorbox", "commerce", "config_rewrite", "core-composer-scaffold", "core-project-message", \
-"core-recommended", "ctools", "css_editor", "devel", "dropzonejs", "duration_field", "dynamic_entity_reference", \
+"color,", "colorbox", "commerce", "config_rewrite", \
+"ctools", "css_editor", "devel", "dropzonejs", "duration_field", "dynamic_entity_reference", \
 "easy_breadcrumb", "embed", "entity", "entity_browser", "entity_embed", "entity_print", \
 "entity_reference_revisions", "entitygroupfield", "exif_orientation", "extra_field", "field_group", "fillpdf", \
 "flexible_permissions", "ginvite", "grequest", "group", "h5p", "health_check", "honeypot", "inline_entity_form", \
