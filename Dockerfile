@@ -111,6 +111,9 @@ RUN ln -s /var/www/html/vendor/bin/drush /usr/local/bin/drush
 
 COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
+RUN /var/www/html/vendor/bin/php-cs-fixer fix
+RUN /var/www/html/vendor/bin/drush cr
+
 COPY /sliderimg/slider1.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider1.jpg
 COPY /sliderimg/slider2.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider2.jpg
 COPY /sliderimg/slider3.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider3.jpg

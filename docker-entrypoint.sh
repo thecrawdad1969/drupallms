@@ -145,7 +145,7 @@ vendor/bin/drush pm:list --status=disabled
 # -----------------------------
 # 9. Clear caches & fixing php
 # -----------------------------
-vendor/bin/php-cs-fixer fix
+
 echo "Clearing caches..."
 vendor/bin/drush cr
 
