@@ -98,7 +98,7 @@ vendor/bin/drush pm:list --status=disabled
 
 # Enable desired modules
 echo "ℹ️ Installing required modules..."
-MODULES=("address", "admin_toolbar", "aristotle", "backup_migrate", "better_exposed_filters", "calendar", \
+MODULES=("address", "admin_toolbar", "backup_migrate", "better_exposed_filters", "calendar", \
 "captcha", "ckeditor_bgimage", "ckeditor_font", "clientside_validation", "clientside_validation_jquery", \
 "color,", "colorbox", "commerce", "config_rewrite", \
 "ctools", "css_editor", "devel", "dropzonejs", "duration_field", "dynamic_entity_reference", \
