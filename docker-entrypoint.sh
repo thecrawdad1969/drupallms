@@ -91,10 +91,10 @@ composer update drupal/* --with-all-dependencies
 #Initial database update to get module state
 echo "ℹ️ Starting database updates..."
 vendor/bin/drush updb -y
-echo "ℹ️ Here is a list of enabled modules..."
-vendor/bin/drush pm:list --status=enabled
-echo "ℹ️ Here is a list of disabled modules..."
-vendor/bin/drush pm:list --status=disabled
+#echo "ℹ️ Here is a list of enabled modules..."
+#vendor/bin/drush pm:list --status=enabled
+#echo "ℹ️ Here is a list of disabled modules..."
+#vendor/bin/drush pm:list --status=disabled
 
 # Enable desired modules
 echo "ℹ️ Installing required modules..."
