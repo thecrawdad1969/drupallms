@@ -107,7 +107,7 @@ MODULES=("address", "admin_toolbar", "backup_migrate", "better_exposed_filters",
 "flexible_permissions", "ginvite", "grequest", "group", "h5p", "health_check", "honeypot", "inline_entity_form", \
 "jquery_ui_touch_punch", "jwt", "key", "mailsystem", "message", "message_notify", "media_entity_browser", \
 "mimemail", "name", "opigno_calendar", "opigno_calendar_event", "opigno_catalog", "opigno_certificate,", \
-"opigno_class", "opigno_commerce", "opigno_course", "opigno_cron", "opigno_dashboard", "opigno_forum", "opigno" \
+"opigno_class", "opigno_commerce", "opigno_course", "opigno_cron", "opigno_dashboard", "opigno_forum", "opigno_lms" \
 "opigno_group_manager", "opigno_ilt", "opigno_learning_path", "opigno_like,", "opigno_messaging", \
 "opigno_mobile_app", "opigno_module", "opigno_moxtra,", "opigno_notification", "opigno_scorm", "opigno_search", \
 "opigno_social", "opigno_statistics", "opigno_tincan_api", "opigno_tour", "pathauto", "pdf", "popup_field_group", \
