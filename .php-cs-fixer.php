@@ -1,7 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->in([__DIR__ . '/drupal'])
+    ->in([__DIR__ . '/web'])
     ->name('*.php');
 
 return (new PhpCsFixer\Config())
