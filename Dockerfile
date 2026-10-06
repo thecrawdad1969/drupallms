@@ -43,7 +43,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir -p /var/www/html/libraries/dropzone && \
     cp dropzone-5.9.3.zip /tmp/dropzone.zip && \
-    unzip /tmp/dropzone.zip -d /tmp/dropzone && \
+    unzip /tmp/dropzone-5.9.3.zip -d /tmp/dropzone && \
     cp /tmp/dropzone/dist/dropzone.min.js libraries/dropzone/dropzone.min.js && \
     cp /tmp/dropzone/dist/dropzone.css libraries/dropzone/dropzone.css && \
     rm -rf /tmp/dropzone /tmp/dropzone.zip
