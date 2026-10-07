@@ -95,7 +95,11 @@ COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 # This was done to ensure that opigno lms would install
 COPY composer.json composer.json
 
+# Remove composer.lock if it exists
+RUN if [ -f composer.lock ]; then rm composer.lock; fi
+
 # Dry-run install to ensure all dependencies are resolvable
+RUN composer clear-cache
 RUN composer update
 RUN composer install
 
