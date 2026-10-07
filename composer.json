@@ -17,6 +17,7 @@
     "require": {
         "composer/installers": "*",
         "commerceguys/addressing": "v1.2.0",
+        "enyo/dropzone": "v5.7.3",
         "thecrawdad1969/opigno_lms": "1.0",
         "dompdf/dompdf": "~2.0.0",
         "drupal/address": "^1.9",
