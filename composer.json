@@ -12,7 +12,7 @@
         {
             "type": "github",
             "url": "https://github.com/thecrawdad1969/opigno_lms.git"
-        },
+        }
    ],
     "require": {
         "composer/installers": "*",
