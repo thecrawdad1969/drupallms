@@ -23,7 +23,7 @@
         "drupal/admin_toolbar": "^3.5",
         "drupal/aristotle": "3.2.7",
         "drupal/backup_migrate": "^5.1",
-        "drupal/better_exposed_filters": "^7.1",
+        "drupal/better_exposed_filters": "^6.0",
         "drupal/bootstrap5": "^4.0",
         "drupal/calendar": "^1.0@beta",
         "drupal/captcha": "^1.17",
