@@ -13,11 +13,7 @@
             "type": "github",
             "url": "https://github.com/thecrawdad1969/opigno_lms.git"
         },
-         {
-            "type": "github",
-            "url": "https://github.com/thecrawdad1969/dropzone.git"
-        }
-    ],
+   ],
     "require": {
         "composer/installers": "*",
         "commerceguys/addressing": "v1.2.0",
@@ -131,7 +127,6 @@
         "drupal/zeropoint": "^1.28",
         "drush/drush": "*",
         "friendsofphp/php-cs-fixer": "*",
-        "thecrawdad1969/dropzone": "1.0",
         "h5p/h5p-core": "1.28",
         "kenwheelers/slick": "1.8.1",
         "mglaman/composer-drupal-lenient": "^1.0.0",
