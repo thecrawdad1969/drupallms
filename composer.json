@@ -142,7 +142,7 @@
             "drupal/core-project-message": true,
             "composer/installers": true,
             "kenwheelers/slick": true,
-            "opigno/opigno_lms": true,
+            "thecrawdad1969/opigno_lms": true,
             "drupal/admin_toolbar": true,
             "commerceguys/addressing": true,
             "dompdf/dompdf": true,
