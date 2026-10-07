@@ -59,7 +59,7 @@
         "drupal/flexible_permissions": "^2.0",
         "drupal/ginvite": "^4.0",
         "drupal/grequest": "^3.2",
-        "drupal/group": "^3.3",
+        "drupal/group": "^1.6",
         "drupal/h5p": "^2.0@alpha",
         "drupal/health_check": "^3.2",
         "drupal/honeypot": "^2.0",
