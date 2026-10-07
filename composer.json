@@ -12,6 +12,10 @@
         {
             "type": "github",
             "url": "https://github.com/thecrawdad1969/opigno_lms.git"
+        },
+         {
+            "type": "github",
+            "url": "https://github.com/enyo/dropzone.git"
         }
     ],
     "require": {
