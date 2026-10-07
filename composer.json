@@ -71,7 +71,7 @@
         "drupal/message": "^1.9",
         "drupal/message_notify": "^1.5",
         "drupal/media_entity_browser": "~2.0@alpha",
-        "drupal/mimemail": "^2.0",
+        "drupal/mimemail": "^1.0",
         "drupal/name": "^1.5",
         "drupal/opigno_calendar": "~3.2.0",
         "drupal/opigno_calendar_event": "^3.2",
