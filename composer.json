@@ -19,7 +19,7 @@
         "commerceguys/addressing": "v2.1.1",
         "thecrawdad1969/opigno_lms": "1.0",
         "dompdf/dompdf": "~2.0.0",
-        "drupal/address": "^2.0.0",
+        "drupal/address": "^1.9",
         "drupal/admin_toolbar": "^3.5",
         "drupal/aristotle": "3.2.7",
         "drupal/backup_migrate": "^5.1",
