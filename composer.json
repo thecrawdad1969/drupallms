@@ -15,7 +15,7 @@
         },
          {
             "type": "github",
-            "url": "https://github.com/enyo/dropzone.git"
+            "url": "https://github.com/thecrawdad1987/dropzone.git"
         }
     ],
     "require": {
@@ -131,7 +131,7 @@
         "drupal/zeropoint": "^1.28",
         "drush/drush": "*",
         "friendsofphp/php-cs-fixer": "*",
-        "enyo/dropzone": "v5.7.3",
+        "thecrawdad1969/dropzone": "*",
         "h5p/h5p-core": "1.28",
         "kenwheelers/slick": "1.8.1",
         "mglaman/composer-drupal-lenient": "^1.0.0",
