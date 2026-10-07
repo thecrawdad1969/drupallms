@@ -96,6 +96,7 @@ COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 COPY composer.json composer.json
 
 # Dry-run install to ensure all dependencies are resolvable
+RUN composer clear-cache
 RUN composer update
 RUN composer install
 
