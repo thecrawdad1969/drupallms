@@ -131,7 +131,7 @@
         "drupal/zeropoint": "^1.28",
         "drush/drush": "*",
         "friendsofphp/php-cs-fixer": "*",
-        "thecrawdad1969/dropzone": "*",
+        "thecrawdad1969/dropzone": "1.0",
         "h5p/h5p-core": "1.28",
         "kenwheelers/slick": "1.8.1",
         "mglaman/composer-drupal-lenient": "^1.0.0",
