@@ -8,11 +8,16 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/thecrawdad1969/opigno_lms.git"
         }
     ],
     "require": {
         "composer/installers": "*",
         "commerceguys/addressing": "v2.1.1",
+        "thecrawdad1969/opigno_lms": "1.0.",
         "dompdf/dompdf": "~2.0.0",
         "drupal/address": "^2.0.0",
         "drupal/admin_toolbar": "^3.5",
