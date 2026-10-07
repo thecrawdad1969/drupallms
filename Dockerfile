@@ -89,6 +89,10 @@ WORKDIR /var/www/html/drupal
 COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
 # copy over composer.json
+#Please note that a number of changes have been made to the composer.json file
+#I have made changes to the enyo/dropzone and opigno/opigno_lms repositories and
+#these changes have been added to analagous repositories in thecrawdad1969 github account
+# This was done to ensure that opigno lms would install
 COPY composer.json composer.json
 
 # Dry-run install to ensure all dependencies are resolvable
