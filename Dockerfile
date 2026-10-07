@@ -95,7 +95,7 @@ COPY composer.json composer.json
 RUN composer update
 RUN composer install
 
-COPY opigno_lms-3.2.7/opigno_lms /var/www/html/drupal/web/modules/contrib
+#COPY opigno_lms-3.2.7/opigno_lms /var/www/html/drupal/web/modules/contrib
 
 #code below is an exampe of how a patch would be applied
 
