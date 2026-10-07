@@ -146,7 +146,6 @@
             "drupal/admin_toolbar": true,
             "commerceguys/addressing": true,
             "dompdf/dompdf": true,
-            "enyo/dropzone": true,
             "drupal/jquery_ui_touch_punch": true,
             "mglaman/composer-drupal-lenient": true,
             "opigno/tincan": true,
