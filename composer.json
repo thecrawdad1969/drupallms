@@ -10,7 +10,7 @@
             "url": "https://packages.drupal.org/8"
         },
         {
-            "type": "vcs",
+            "type": "github",
             "url": "https://github.com/thecrawdad1969/opigno_lms.git"
         }
     ],
