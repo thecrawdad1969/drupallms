@@ -54,7 +54,7 @@
         "drupal/entitygroupfield": "^2.0@RC",
         "drupal/exif_orientation": "^1.4",
         "drupal/extra_field": "^2.3",
-        "drupal/field_group": "^4.0",
+        "drupal/field_group": "^3.2",
         "drupal/fillpdf": "^5.2",
         "drupal/flexible_permissions": "^2.0",
         "drupal/ginvite": "^4.0",
