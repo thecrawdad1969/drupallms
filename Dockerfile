@@ -103,7 +103,7 @@ COPY opigno.patch ./patches/opigno.patch
 
 #RUN composer update h5p/h5p-core
 #RUN composer update opigno/opigno_lms
-RUN composer install
+RUN composer install --optimize-autoloader
 
 #code below is an exampe of how a patch would be applied
 
