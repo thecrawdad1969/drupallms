@@ -98,6 +98,9 @@ COPY composer.json composer.json
 # Remove composer.lock if it exists
 RUN if [ -f composer.lock ]; then rm composer.lock; fi
 
+#Copy patch file over
+COPY opigno.patch opigno.patch
+
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
 RUN composer update
