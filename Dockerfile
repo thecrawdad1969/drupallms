@@ -90,12 +90,6 @@ COPY composer.json composer.json
 # Remove composer.lock if it exists
 RUN if [ -f composer.lock ]; then rm composer.lock; fi
 
-#Copy patch file over
-COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
-RUN cd /var/www/html/drupal/web/modules/contrib/opigno_lms && \
-    patch -p1 < opigno.patch \
-    && rm /var/www/html/drupal/web/modules/contrib/opigno_lms/opigno.patch
-
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
 RUN composer update
@@ -107,6 +101,12 @@ COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
     patch -p1 < h5p.patch \
     && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
+
+#Copy patch file over
+COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
+RUN cd /var/www/html/drupal/web/modules/contrib/opigno_lms && \
+    patch -p1 < opigno.patch \
+    && rm /var/www/html/drupal/web/modules/contrib/opigno_lms/opigno.patch
 
 RUN composer update drupal/core-recommended --with-dependencies
 
