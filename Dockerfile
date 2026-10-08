@@ -98,8 +98,8 @@ RUN if [ -f composer.lock ]; then rm composer.lock; fi
 RUN composer clear-cache
 
 #Add patches to be applied
-COPY h5p.patch /tmp/h5p.patch
-COPY opigno.patch /tmp/opigno.patch
+COPY h5p.patch ./patches/h5p.patch
+COPY opigno.patch ./patches/opigno.patch
 
 RUN composer update
 RUN composer install
