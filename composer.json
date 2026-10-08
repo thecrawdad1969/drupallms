@@ -16,6 +16,7 @@
    ],
     "require": {
         "composer/installers": "*",
+        "cweagans/composer-patches":"^1.8",
         "commerceguys/addressing": "v1.2.0",
         "enyo/dropzone": "v5.7.3",
         "opigno/opigno_lms": "3.2.7",
@@ -263,6 +264,14 @@
         "sort-packages": true
     },
     "extra": {
+        "patches": {
+            "h5p/h5p-core": {
+                "Fix h5p custom bug": "patches/h5p.patch"
+            },
+            "opigno/opigno_lms": {
+                "Fix opigno custom bug": "patches/opigno.patch"
+            }
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"

@@ -1,20 +1,24 @@
 #Dockerfile with modules
 
-# Use official PHP-Apache image
-FROM php:8.4-apache AS drupal
+# Use the latest patched official PHP-Apache image to reduce Debian package CVEs
+FROM php:8.4-apache-bookworm AS drupal
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget unzip apt-utils curl \
+# Install system dependencies and ensure the base image packages are patched
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends \
+        unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
     && apt-get clean \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo pdo_mysql gd mbstring xml zip bcmath \
     && rm -rf /var/lib/apt/lists/*
     #&& echo "root:Docker!" | chpasswd
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get update && apt-get install -y nodejs \
-    && apt-get clean
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install pdf.js (prebuilt version from npm)
 RUN mkdir -p /var/www/html/libraries/pdfjs \
@@ -90,23 +94,28 @@ COPY composer.json composer.json
 # Remove composer.lock if it exists
 RUN if [ -f composer.lock ]; then rm composer.lock; fi
 
-#code below is an exampe of how a patch would be applied
-
-COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-RUN cd /drupal/web/modules/contrib/h5p && \
-    patch -p1 < h5p.patch \
-    && rm /drupal/web/modules/contrib/h5p/h5p.patch
-
-#Copy patch file over
-COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
-RUN cd /drupal/web/modules/contrib/opigno_lms && \
-    patch -p1 < opigno.patch \
-    && rm /drupal/web/modules/contrib/opigno_lms/opigno.patch
-
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
+
+#Add patches to be applied
+COPY h5p.patch /tmp/h5p.patch
+COPY opigno.patch /tmp/opigno.patch
+
 RUN composer update
 RUN composer install
+
+#code below is an exampe of how a patch would be applied
+
+#COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
+#RUN cd /drupal/web/modules/contrib/h5p && \
+   # patch -p1 < h5p.patch \
+   # && rm /drupal/web/modules/contrib/h5p/h5p.patch
+
+#Copy patch file over
+#COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
+#RUN cd /drupal/web/modules/contrib/opigno_lms && \
+    #patch -p1 < opigno.patch \
+    #&& rm /drupal/web/modules/contrib/opigno_lms/opigno.patch
 
 RUN composer update drupal/core-recommended --with-dependencies
 
