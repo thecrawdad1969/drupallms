@@ -101,8 +101,8 @@ RUN composer clear-cache
 COPY h5p.patch ./patches/h5p.patch
 COPY opigno.patch ./patches/opigno.patch
 
-RUN composer update h5p/h5p-core
-RUN composer update opigno/opigno_lms
+#RUN composer update h5p/h5p-core
+#RUN composer update opigno/opigno_lms
 RUN composer install
 
 #code below is an exampe of how a patch would be applied
