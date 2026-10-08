@@ -5,8 +5,8 @@ index abcdef0..1234567 100644
 @@
 -    "enyo/dropzone": "5.5.0",
 +    "enyo/dropzone": "5.7.3",
--    "kenwheeler/slick": "~1.8.1",
-+    "kenwheelers/slick": "~1.8.1",
+-    "kenwheeler/slick": "1.8.1",
++    "kenwheelers/slick": "1.8.1",
 diff --git a/opigno_lms/package.json b/opigno_lms/package.json
 index 89abcdef..9876543 100644
 --- a/opigno_lms/package.json
@@ -14,3 +14,5 @@ index 89abcdef..9876543 100644
 @@
 -    "dropzone": "5.5.0",
 +    "dropzone": "5.7.3",
+-    "slick": "1.8.1",
++    "slick": "1.8.1",
