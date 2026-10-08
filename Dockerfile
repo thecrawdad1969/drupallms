@@ -93,15 +93,15 @@ RUN if [ -f composer.lock ]; then rm composer.lock; fi
 #code below is an exampe of how a patch would be applied
 
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
+RUN cd /drupal/web/modules/contrib/h5p && \
     patch -p1 < h5p.patch \
-    && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
+    && rm /drupal/web/modules/contrib/h5p/h5p.patch
 
 #Copy patch file over
 COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
-RUN cd /var/www/html/drupal/web/modules/contrib/opigno_lms && \
+RUN cd /drupal/web/modules/contrib/opigno_lms && \
     patch -p1 < opigno.patch \
-    && rm /var/www/html/drupal/web/modules/contrib/opigno_lms/opigno.patch
+    && rm /drupal/web/modules/contrib/opigno_lms/opigno.patch
 
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
