@@ -41,13 +41,6 @@ RUN apt-get update && apt-get install -y supervisor && \
 # Copy Supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-#Install dropzone
-#RUN mkdir -p /var/www/html/libraries/dropzone
-#COPY -r /dropzone /tmp/dropzone && \
-    #cp /tmp/dropzone/dist/dropzone.min.js libraries/dropzone/dropzone.min.js && \
-    #cp /tmp/dropzone/dist/dropzone.css libraries/dropzone/dropzone.css && \
-    #rm -rf /tmp/dropzone
-
 # Enable Apache rewrite module
 RUN a2enmod rewrite
 
@@ -78,7 +71,6 @@ RUN mkdir -p /var/www/html/drupal/private && \
     mkdir -p /var/www/html/drupal/web/default/files/configsync && \
     mkdir -p /var/www/html/sites/default/files
 
-
 ENV PATH="./vendor/bin:${PATH}"
 
 # Set up Drupal
@@ -99,14 +91,15 @@ COPY composer.json composer.json
 RUN if [ -f composer.lock ]; then rm composer.lock; fi
 
 #Copy patch file over
-COPY opigno.patch opigno.patch
+COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
+RUN cd /var/www/html/drupal/web/modules/contrib/opigno_lms && \
+    patch -p1 < opigno.patch \
+    && rm /var/www/html/drupal/web/modules/contrib/opigno_lms/opigno.patch
 
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
 RUN composer update
 RUN composer install
-
-#COPY opigno_lms-3.2.7/opigno_lms /var/www/html/drupal/web/modules/contrib
 
 #code below is an exampe of how a patch would be applied
 
