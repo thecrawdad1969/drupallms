@@ -1,4 +1,3 @@
-## Docker
 # Docker
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
@@ -11,11 +10,11 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'c48d436f-cdd1-4c12-8ae5-950a57d390bf'
+  dockerRegistryServiceConnection: '75a377b9-27ce-4c0a-bbc6-68822b084c18'
   imageRepository: 'drupallms'
   containerRegistry: 'ilcacontainers.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: 'current'
+  tag: 'latest'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
