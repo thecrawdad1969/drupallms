@@ -93,7 +93,7 @@ COPY composer.json composer.json
 
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
-RUN rm -rf opigno composer.lock
+RUN composer update opigno/opigno_lms --with-all-dependencies
 
 RUN composer install --optimize-autoloader
 
