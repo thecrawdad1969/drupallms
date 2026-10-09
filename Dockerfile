@@ -84,6 +84,10 @@ WORKDIR /var/www/html/drupal
 #Copy php-cs-fixer rules
 COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
+#Add patches to be applied
+COPY h5p.patch /var/www/html/drupal/patches/h5p.patch
+COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
+
 # copy over composer.json
 #Please note that a number of changes have been made to the composer.json file
 #I have made changes to the enyo/dropzone and opigno/opigno_lms repositories and
@@ -93,10 +97,6 @@ COPY composer.json composer.json
 
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
-
-#Add patches to be applied
-COPY h5p.patch /var/www/html/drupal/patches/h5p.patch
-COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
 
 RUN composer update kenwheelers/slick
 RUN composer update mglaman/composer-drupal-lenient
