@@ -89,16 +89,10 @@ COPY h5p.patch /var/www/html/drupal/patches/h5p.patch
 COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
 
 # copy over composer.json
-#Please note that a number of changes have been made to the composer.json file
-#I have made changes to the enyo/dropzone and opigno/opigno_lms repositories and
-#these changes have been added to analagous repositories in thecrawdad1969 github account
-# This was done to ensure that opigno lms would install
 COPY composer.json composer.json
-COPY composer.lock componser.lock
 
 # Dry-run install to ensure all dependencies are resolvable
-RUN composer clear-cache
-
+RUN composer update
 RUN composer install --optimize-autoloader
 
 #code below is an exampe of how a patch would be applied
