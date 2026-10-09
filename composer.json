@@ -142,6 +142,7 @@
         "allow-plugins": {
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
+            "cweagans/composer-patches":true,
             "composer/installers": true,
             "kenwheelers/slick": true,
             "thecrawdad1969/opigno_lms": true,
