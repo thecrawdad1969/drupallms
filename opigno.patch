@@ -1,5 +1,7 @@
 --- a/composer.json
 +++ b/composer.json
 @@
--    "kenwheeler/slick": "1.8.1",
-+    "kenwheeler/slick": "^1.6"
+-    "kenwheeler/slick": "~1.8.1",
++    "kenwheeler/slick": "^1.6",
+-    "enyo/dropzone": "v5.5.0",
++    "enyo/dropzone": "v5.7.3",
