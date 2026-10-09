@@ -94,6 +94,7 @@ COPY composer.json composer.json
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
 RUN composer update opigno/opigno_lms --with-dependencies
+RUN composer update --lock
 
 RUN composer install --optimize-autoloader
 
