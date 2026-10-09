@@ -266,7 +266,7 @@
     "extra": {
         "patches": {
             "h5p/h5p-core": {
-                "Fix h5p custom bug": "patches/h5p.patch"
+                "Fix h5p custom bug": "/var/www/html/drupal/patches/h5p.patch"
             },
             "opigno/opigno_lms": {
                 "Fix opigno custom bug": "patches/opigno.patch"

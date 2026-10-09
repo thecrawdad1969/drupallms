@@ -95,8 +95,8 @@ COPY composer.json composer.json
 RUN composer clear-cache
 
 #Add patches to be applied
-COPY h5p.patch ./patches/h5p.patch
-COPY opigno.patch ./patches/opigno.patch
+COPY h5p.patch /var/www/html/drupal/patches/h5p.patch
+COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
 
 #RUN composer update h5p/h5p-core
 #RUN composer update opigno/opigno_lms
