@@ -16,7 +16,7 @@
    ],
     "require": {
         "composer/installers": "*",
-        "cweagans/composer-patches":"^1.8",
+        "cweagans/composer-patches":"^1.7",
         "commerceguys/addressing": "v1.2.0",
         "drupal/h5p": "^2.0@alpha",
         "h5p/h5p-core": "1.28",
@@ -266,10 +266,10 @@
     "extra": {
         "patches": {
             "h5p/h5p-core": {
-                "Fix h5p custom bug": "/var/www/html/drupal/patches/h5p.patch"
+                "Fix h5p custom bug": "patches/h5p.patch"
             },
             "opigno/opigno_lms": {
-                "Fix opigno custom bug": "/var/www/html/drupal/patches/opigno.patch"
+                "Fix opigno custom bug": "patches/opigno.patch"
             }
         },
         "drupal-scaffold": {
