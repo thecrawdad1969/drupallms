@@ -15,7 +15,7 @@ variables:
   imageRepository: 'drupallms'
   containerRegistry: 'ilcacontainers.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: 'latest'
+  tag: 'current'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
