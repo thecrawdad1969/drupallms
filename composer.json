@@ -22,7 +22,7 @@
         "composer/installers": "*",
         "cweagans/composer-patches":"^1.8",
         "commerceguys/addressing": "v1.2.0",
-        "kenwheeler/slick": "1.6.1"
+        "kenwheeler/slick": "1.6.1",
         "opigno/opigno_lms": "3.2.7",
         "dompdf/dompdf": "~2.0.0",
         "drupal/address": "^1.9",
