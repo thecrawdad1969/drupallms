@@ -73,7 +73,8 @@ RUN composer config --global policy.advisories.ignore dompdf/dompdf
 
 RUN mkdir -p /var/www/html/drupal/private && \
     mkdir -p /var/www/html/drupal/web/default/files/configsync && \
-    mkdir -p /var/www/html/sites/default/files
+    mkdir -p /var/www/html/sites/default/files && \
+    mkdir -p /var/www/html/drupal/patches
 
 ENV PATH="./vendor/bin:${PATH}"
 
@@ -85,6 +86,7 @@ WORKDIR /var/www/html/drupal
 COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
 #Add patches to be applied
+
 COPY h5p.patch /var/www/html/drupal/patches/h5p.patch
 COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
 
