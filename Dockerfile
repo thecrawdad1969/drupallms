@@ -98,8 +98,14 @@ RUN composer clear-cache
 COPY h5p.patch /var/www/html/drupal/patches/h5p.patch
 COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
 
-#RUN composer update h5p/h5p-core
-#RUN composer update opigno/opigno_lms
+RUN composer update kenwheelers/slick
+RUN composer update mglaman/composer-drupal-lenient
+RUN composer update nanasess/bcmath-polyfill
+RUN composer update opis/json-schema
+RUN composer update opigno/tincan
+RUN composer update rusticisoftware/tincan
+RUN composer update symfony/runtime
+
 RUN composer install --optimize-autoloader
 
 #code below is an exampe of how a patch would be applied
