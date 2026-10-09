@@ -12,10 +12,6 @@
         {
             "type": "github",
             "url": "https://github.com/thecrawdad1969/opigno_lms.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/kenwheeler/slick"
         }
    ],
     "require": {
