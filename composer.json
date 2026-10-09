@@ -12,13 +12,17 @@
         {
             "type": "github",
             "url": "https://github.com/thecrawdad1969/opigno_lms.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/kenwheeler/slick"
         }
    ],
     "require": {
         "composer/installers": "*",
         "cweagans/composer-patches":"^1.8",
         "commerceguys/addressing": "v1.2.0",
-        "enyo/dropzone": "v5.7.3",
+        "kenwheeler/slick": "1.6.1"
         "opigno/opigno_lms": "3.2.7",
         "dompdf/dompdf": "~2.0.0",
         "drupal/address": "^1.9",
@@ -130,7 +134,6 @@
         "drush/drush": "*",
         "friendsofphp/php-cs-fixer": "*",
         "h5p/h5p-core": "1.28",
-        "kenwheelers/slick": "1.8.1",
         "mglaman/composer-drupal-lenient": "^1.0.0",
         "nanasess/bcmath-polyfill": "*",
         "opis/json-schema": "^2.2",
@@ -144,8 +147,8 @@
             "drupal/core-project-message": true,
             "cweagans/composer-patches":true,
             "composer/installers": true,
-            "kenwheelers/slick": true,
-            "thecrawdad1969/opigno_lms": true,
+            "kenwheeler/slick": true,
+            "opigno/opigno_lms": true,
             "drupal/admin_toolbar": true,
             "commerceguys/addressing": true,
             "dompdf/dompdf": true,
@@ -270,7 +273,7 @@
                 "Fix h5p custom bug": "/var/www/html/drupal/patches/h5p.patch"
             },
             "opigno/opigno_lms": {
-                "Fix opigno custom bug": "patches/opigno.patch"
+                "Fix opigno custom bug": "/var/www/html/drupal/patches/opigno.patch"
             }
         },
         "drupal-scaffold": {
