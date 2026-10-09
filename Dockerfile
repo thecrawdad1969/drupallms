@@ -94,17 +94,10 @@ COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
 #these changes have been added to analagous repositories in thecrawdad1969 github account
 # This was done to ensure that opigno lms would install
 COPY composer.json composer.json
+COPY composer.lock componser.lock
 
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
-
-RUN composer update kenwheelers/slick
-RUN composer update mglaman/composer-drupal-lenient
-RUN composer update nanasess/bcmath-polyfill
-RUN composer update opis/json-schema
-RUN composer update opigno/tincan
-RUN composer update rusticisoftware/tincan
-RUN composer update symfony/runtime
 
 RUN composer install --optimize-autoloader
 
