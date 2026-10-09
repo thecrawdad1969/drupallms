@@ -92,7 +92,7 @@ COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
 COPY composer.json composer.json
 
 # Dry-run install to ensure all dependencies are resolvable
-RUN composer update
+RUN composer update h5p/h5p-core
 RUN composer install --optimize-autoloader
 
 #code below is an exampe of how a patch would be applied

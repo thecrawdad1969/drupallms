@@ -3,6 +3,6 @@ diff --git a/var/www/html/drupal/web/modules/contrib/composer.json b/var/www/htm
 +++ b/composer.json
 @@
 -    "kenwheeler/slick": "~1.8.1",
-+    "kenwheeler/slick": "^1.6",
++    "kenwheeler/slick": "1.6.1",
 -    "enyo/dropzone": "v5.5.0",
 +    "enyo/dropzone": "v5.7.3",
