@@ -1,3 +1,4 @@
+diff --git a/var/www/html/drupal/web/modules/contrib/composer.json b/var/www/html/drupal/web/modules/contrib/composer.json
 --- a/composer.json
 +++ b/composer.json
 @@
