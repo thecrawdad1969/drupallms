@@ -74,7 +74,7 @@ RUN composer config --global policy.advisories.ignore dompdf/dompdf
 RUN mkdir -p /var/www/html/drupal/private && \
     mkdir -p /var/www/html/drupal/web/default/files/configsync && \
     mkdir -p /var/www/html/sites/default/files && \
-    mkdir -p /var/www/html/drupal/patches
+    #mkdir -p /var/www/html/drupal/patches
 
 ENV PATH="./vendor/bin:${PATH}"
 
@@ -87,18 +87,24 @@ COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
 #Add patches to be applied
 
-COPY h5p.patch /var/www/html/drupal/patches/h5p.patch
-COPY opigno.patch /var/www/html/drupal/patches/opigno.patch
+COPY h5p.patch h5p.patch
+COPY opigno.patch opigno.patch
+
+RUN composer require cweagans/composer-patches:^1.7
+
 
 # copy over composer.json
 COPY composer.json composer.json
+
+RUN composer patches-repatch
+RUN composer patches-doctor
 
 # Dry-run install to ensure all dependencies are resolvable
 RUN composer clear-cache
 RUN composer update
 #RUN composer update --lock
 
-RUN composer install --optimize-autoloader
+RUN composer -v install
 
 #code below is an exampe of how a patch would be applied
 
