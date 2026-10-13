@@ -60,18 +60,14 @@ DRUPAL_ADMIN_EMAIL="${DRUPAL_ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 vendor/bin/drush status>/dev/null 2>&1
 
 # Check if drush command succeeded
-if [ $? -eq 0 ]; then
-    echo "Drupal already installed."
-else
-    echo "Installing Drupal..."
-    vendor/bin/drush site:install standard \
+    vendor/bin/drush site:install opigno_lms \
         --account-name="$DRUPAL_ADMIN_USER" \
         --account-pass="$DRUPAL_ADMIN_PASS" \
         --account-mail="$DRUPAL_ADMIN_EMAIL" \
         --site-name="$DRUPAL_SITE_NAME" \
         --db-url=mysql://thecrawdad87:Dtag1984!@drupal-mysql-srv.mysql.database.azure.com:3306/drupal_lms \
         -y
-fi
+
 
 # -----------------------------
 # 6. composer audit and update
@@ -106,11 +102,7 @@ MODULES=("address", "admin_toolbar", "backup_migrate", "better_exposed_filters",
 "entity_reference_revisions", "entitygroupfield", "exif_orientation", "extra_field", "field_group", "fillpdf", \
 "flexible_permissions", "ginvite", "grequest", "group", "h5p", "health_check", "honeypot", "inline_entity_form", \
 "jquery_ui_touch_punch", "jwt", "key", "mailsystem", "message", "message_notify", "media_entity_browser", \
-"mimemail", "name", "opigno_calendar", "opigno_calendar_event", "opigno_catalog", "opigno_certificate,", \
-"opigno_class", "opigno_commerce", "opigno_course", "opigno_cron", "opigno_dashboard", "opigno_forum", "opigno_lms" \
-"opigno_group_manager", "opigno_ilt", "opigno_learning_path", "opigno_like", "opigno_messaging", \
-"opigno_mobile_app", "opigno_module", "opigno_moxtra,", "opigno_notification", "opigno_scorm", "opigno_search", \
-"opigno_social", "opigno_statistics", "opigno_tincan_api", "opigno_tour", "pathauto", "pdf", "popup_field_group", \
+"mimemail", "name", "pathauto", "pdf", "popup_field_group", \
 "private_message", "profile", "queue_mail", "queue_ui", "quickedit", "rdf", "recaptcha", "redirect", "restui", \
 "role_delegation", "search_api", "simple_gmap", "state_machine", "tft", "token", "token_filter", \
 "twig_field_value", "ultimate_cron", "userprotect", "video", "views_infinite_scroll", "views_templates", "webform")

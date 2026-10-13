@@ -7,7 +7,9 @@ FROM php:8.4-apache-bookworm AS drupal
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
-        unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
+        bash dom gd mbstring mysqli pdo zip unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
+        libreoffice libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-core fonts-liberation fonts-dejavu fonts-noto fonts-noto-cjk fonts-noto-color-emoji fonts-crosextra-carlito fonts-crosextra-caladea \
+        imagemagick openjdk-11-jre-headless \
     && apt-get clean \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo pdo_mysql gd mbstring xml zip bcmath \
@@ -31,6 +33,9 @@ RUN mkdir -p /var/run/sshd && \
     echo 'root:Dtag1984!' | chpasswd
 
 COPY sshd_config /etc/ssh/sshd_config
+
+# Enable shell_exec by editing php.ini
+RUN echo "disable_functions =" > /usr/local/etc/php/php.ini
 
 # Install phpMyAdmin
 RUN mkdir -p /var/www/html/phpmyadmin && \
@@ -65,7 +70,7 @@ RUN composer config --global repo.drupal composer https://packages.drupal.org/8
     #composer config --global repo.mozilla vcs https://github.com/mozilla/pdf.js/tree/v2.5.207
     #composer config --global repo.furf vcs https://github.com/furf/jquery-ui-touch-punch
 
-RUN composer create-project drupal/recommended-project:^10.6 drupal
+RUN composer create-project opigno/opigno-composer:3.2.7 drupal
 
 RUN composer config --global policy.advisories.ignore dompdf/dompdf
 
@@ -90,10 +95,23 @@ COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 #COPY h5p.patch h5p.patch
 #COPY opigno.patch opigno.patch
 
+#RUN composer config --no-plugins allow-plugins.cweagans/composer-patches true
+
 RUN composer require cweagans/composer-patches:^1.7
 
 # copy over composer.json
 COPY composer.json composer.json
+
+#RUN composer patches-repatch
+#RUN composer patches-doctor
+
+# Dry-run install to ensure all dependencies are resolvable
+RUN rm -rf vendor composer.lock
+RUN composer clear-cache
+#RUN composer update
+#RUN composer update --lock
+
+RUN composer -v install
 
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 RUN cd /drupal/web/modules/contrib/h5p && \
@@ -101,20 +119,10 @@ RUN cd /drupal/web/modules/contrib/h5p && \
    && rm /drupal/web/modules/contrib/h5p/h5p.patch
 
 #Copy patch file over
-COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
-RUN cd /drupal/web/modules/contrib/opigno_lms && \
-    patch -p2 < opigno.patch \
-    && rm /drupal/web/modules/contrib/opigno_lms/opigno.patch
-
-RUN composer patches-repatch
-RUN composer patches-doctor
-
-# Dry-run install to ensure all dependencies are resolvable
-RUN composer clear-cache
-#RUN composer update
-RUN composer update --lock
-
-RUN composer -v install
+#COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
+#RUN cd /drupal/web/modules/contrib/opigno_lms && \
+    #patch -p2 < opigno.patch \
+    #&& rm /drupal/web/modules/contrib/opigno_lms/opigno.patch
 
 #code below is an exampe of how a patch would be applied
 

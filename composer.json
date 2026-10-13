@@ -20,7 +20,6 @@
         "drupal/h5p": "^2.0@alpha",
         "h5p/h5p-core": "1.28",
         "kenwheeler/slick": "1.6.1",
-        "opigno/opigno_lms": "3.2.7",
         "dompdf/dompdf": "~2.0.0",
         "drupal/address": "^1.9",
         "drupal/admin_toolbar": "^3.5",
@@ -75,31 +74,6 @@
         "drupal/media_entity_browser": "~2.0@alpha",
         "drupal/mimemail": "^1.0",
         "drupal/name": "^1.5",
-        "drupal/opigno_calendar": "~3.2.0",
-        "drupal/opigno_calendar_event": "^3.2",
-        "drupal/opigno_catalog": "~3.2.0",
-        "drupal/opigno_certificate": "~3.2.0",
-        "drupal/opigno_class": "~3.2.0",
-        "drupal/opigno_commerce": "~3.2.0",
-        "drupal/opigno_course": "~3.2.0",
-        "drupal/opigno_cron": "~3.2.0",
-        "drupal/opigno_dashboard": "~3.2.0",
-        "drupal/opigno_forum": "~3.2.0",
-        "drupal/opigno_group_manager": "~3.2.0",
-        "drupal/opigno_ilt": "~3.2.0",
-        "drupal/opigno_learning_path": "~3.2.0",
-        "drupal/opigno_like": "~3.2.0",
-        "drupal/opigno_messaging": "~3.2.0",
-        "drupal/opigno_mobile_app": "~3.2.0",
-        "drupal/opigno_module": "~3.2.0",
-        "drupal/opigno_moxtra": "~3.2.0",
-        "drupal/opigno_notification": "~3.2.0",
-        "drupal/opigno_scorm": "~3.2.0",
-        "drupal/opigno_search": "~3.2.0",
-        "drupal/opigno_social": "~3.2.0",
-        "drupal/opigno_statistics": "~3.2.0",
-        "drupal/opigno_tincan_api": "~3.2.0",
-        "drupal/opigno_tour": "~3.2.0",
         "drupal/pathauto": "^1.15",
         "drupal/pdf": "^1.2",
         "drupal/popup_field_group": "^1.8",
@@ -132,7 +106,6 @@
         "mglaman/composer-drupal-lenient": "^1.0.0",
         "nanasess/bcmath-polyfill": "*",
         "opis/json-schema": "^2.2",
-        "opigno/tincan": "^1.1",
         "rusticisoftware/tincan": "*",
         "symfony/runtime": "*"
     },
@@ -149,7 +122,6 @@
             "dompdf/dompdf": true,
             "drupal/jquery_ui_touch_punch": true,
             "mglaman/composer-drupal-lenient": true,
-            "opigno/tincan": true,
             "opis/json-schema": true,
             "rusticisoftware/tincan": true,
             "symfony/runtime": true,
@@ -204,31 +176,6 @@
             "drupal/message_notify": true,
             "drupal/mimemail": true,
             "drupal/name": true,
-            "drupal/opigno_calendar": true,
-            "drupal/opigno_calendar_event": true,
-            "drupal/opigno_catalog": true,
-            "drupal/opigno_certificate": true,
-            "drupal/opigno_class": true,
-            "drupal/opigno_commerce": true,
-            "drupal/opigno_course": true,
-            "drupal/opigno_cron": true,
-            "drupal/opigno_dashboard": true,
-            "drupal/opigno_forum": true,
-            "drupal/opigno_group_manager": true,
-            "drupal/opigno_ilt": true,
-            "drupal/opigno_learning_path": true,
-            "drupal/opigno_like": true,
-            "drupal/opigno_messaging": true,
-            "drupal/opigno_mobile_app": true,
-            "drupal/opigno_module": true,
-            "drupal/opigno_moxtra": true,
-            "drupal/opigno_notification": true,
-            "drupal/opigno_scorm": true,
-            "drupal/opigno_search": true,
-            "drupal/opigno_social": true,
-            "drupal/opigno_statistics": true,
-            "drupal/opigno_tincan_api": true,
-            "drupal/opigno_tour": true,
             "drupal/pathauto": true,
             "drupal/pdf": true,
             "drupal/popup_field_group": true,
@@ -262,20 +209,7 @@
         },
         "sort-packages": true
     },
-    "extra": {
-        "patches": {
-            "h5p/h5p-core": {
-                "Description": "Fixes deprecated code in h5p module",
-                "url": "h5p.patch",
-                "depth": 2
-            },
-            "opigno/opigno_lms": {
-                "Description": "Fixes custom bug in opigno module",
-                "url": "opigno.patch",
-                "depth": 2
-            }
-        },
-        "drupal-scaffold": {
+    "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
             }
@@ -301,4 +235,3 @@
             ]
         }
     }
-}
