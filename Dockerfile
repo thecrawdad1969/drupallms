@@ -7,12 +7,12 @@ FROM php:8.4-apache-bookworm AS drupal
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
-        bash dom gd mbstring mysqli pdo zip unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
+        unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
         libreoffice libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-core fonts-liberation fonts-dejavu fonts-noto fonts-noto-cjk fonts-noto-color-emoji fonts-crosextra-carlito fonts-crosextra-caladea \
-        imagemagick openjdk-11-jre-headless \
+        imagemagick openjdk-17-jre-headless \
     && apt-get clean \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo pdo_mysql gd mbstring xml zip bcmath \
+    && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath \
     && rm -rf /var/lib/apt/lists/*
     #&& echo "root:Docker!" | chpasswd
 
@@ -70,9 +70,9 @@ RUN composer config --global repo.drupal composer https://packages.drupal.org/8
     #composer config --global repo.mozilla vcs https://github.com/mozilla/pdf.js/tree/v2.5.207
     #composer config --global repo.furf vcs https://github.com/furf/jquery-ui-touch-punch
 
-RUN composer create-project opigno/opigno-composer:3.2.7 drupal
-
 RUN composer config --global policy.advisories.ignore dompdf/dompdf
+
+RUN composer create-project opigno/opigno-composer:3.2.7 drupal
 
 #RUN composer config repositories.asset-packagist composer https://asset-packagist.org
 
@@ -97,7 +97,7 @@ COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
 #RUN composer config --no-plugins allow-plugins.cweagans/composer-patches true
 
-RUN composer require cweagans/composer-patches:^1.7
+#RUN composer require cweagans/composer-patches:^1.7
 
 # copy over composer.json
 COPY composer.json composer.json
@@ -113,10 +113,10 @@ RUN composer clear-cache
 
 RUN composer -v install
 
-COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-RUN cd /drupal/web/modules/contrib/h5p && \
-   patch -p1 < h5p.patch \
-   && rm /drupal/web/modules/contrib/h5p/h5p.patch
+#COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
+#RUN cd /drupal/web/modules/contrib/h5p && \
+   #patch -p1 < h5p.patch \
+   #&& rm /drupal/web/modules/contrib/h5p/h5p.patch
 
 #Copy patch file over
 #COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
