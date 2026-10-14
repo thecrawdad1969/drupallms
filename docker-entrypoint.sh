@@ -57,27 +57,27 @@ DRUPAL_ADMIN_EMAIL="${DRUPAL_ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 # -----------------------------
 # 5. Install Drupal if not installed#
 # -----------------------------
-vendor/bin/drush status>/dev/null 2>&1
+#vendor/bin/drush status>/dev/null 2>&1
 
 # Check if drush command succeeded
-    vendor/bin/drush site:install opigno \
-        --account-name="$DRUPAL_ADMIN_USER" \
-        --account-pass="$DRUPAL_ADMIN_PASS" \
-        --account-mail="$DRUPAL_ADMIN_EMAIL" \
-        --site-name="$DRUPAL_SITE_NAME" \
-        --db-url=mysql://thecrawdad87:Dtag1984!@drupal-mysql-srv.mysql.database.azure.com:3306/drupal_lms \
-        -y
+    #vendor/bin/drush site:install \
+        #--account-name="$DRUPAL_ADMIN_USER" \
+        #--account-pass="$DRUPAL_ADMIN_PASS" \
+        #--account-mail="$DRUPAL_ADMIN_EMAIL" \
+        #--site-name="$DRUPAL_SITE_NAME" \
+        #--db-url=mysql://thecrawdad87:Dtag1984!@drupal-mysql-srv.mysql.database.azure.com:3306/drupal_lms \
+        #-y
 
 
 # -----------------------------
 # 6. composer audit and update
 # -----------------------------
-echo "ℹ️ checking to determine if drupal is outdated..."
-composer outdated "drupal/*"
-echo "ℹ️ Auditing Drupal..."
-composer audit  --no-interaction
-echo "ℹ️ Updating with all dependencies..."
-composer update drupal/* --with-all-dependencies
+#echo "ℹ️ checking to determine if drupal is outdated..."
+#composer outdated "drupal/*"
+#echo "ℹ️ Auditing Drupal..."
+#composer audit  --no-interaction
+#echo "ℹ️ Updating with all dependencies..."
+#composer update drupal/* --with-all-dependencies
 
 
 # -----------------------------
@@ -85,45 +85,45 @@ composer update drupal/* --with-all-dependencies
 # -----------------------------
 
 #Initial database update to get module state
-echo "ℹ️ Starting database updates..."
-vendor/bin/drush updb -y
+#echo "ℹ️ Starting database updates..."
+#vendor/bin/drush updb -y
 #echo "ℹ️ Here is a list of enabled modules..."
 #vendor/bin/drush pm:list --status=enabled
 #echo "ℹ️ Here is a list of disabled modules..."
 #vendor/bin/drush pm:list --status=disabled
 
 # Enable desired modules
-echo "ℹ️ Installing required modules..."
-MODULES=("address", "admin_toolbar", "backup_migrate", "better_exposed_filters", "calendar", \
-"captcha", "ckeditor_bgimage", "ckeditor_font", "clientside_validation", "clientside_validation_jquery", \
-"color,", "colorbox", "commerce", "config_rewrite", \
-"ctools", "css_editor", "devel", "dropzonejs", "duration_field", "dynamic_entity_reference", \
-"easy_breadcrumb", "embed", "entity", "entity_browser", "entity_embed", "entity_print", \
-"entity_reference_revisions", "entitygroupfield", "exif_orientation", "extra_field", "field_group", "fillpdf", \
-"flexible_permissions", "ginvite", "grequest", "group", "h5p", "health_check", "honeypot", "inline_entity_form", \
-"jquery_ui_touch_punch", "jwt", "key", "mailsystem", "message", "message_notify", "media_entity_browser", \
-"mimemail", "name", "pathauto", "pdf", "popup_field_group", \
-"private_message", "profile", "queue_mail", "queue_ui", "quickedit", "rdf", "recaptcha", "redirect", "restui", \
-"role_delegation", "search_api", "simple_gmap", "state_machine", "tft", "token", "token_filter", \
-"twig_field_value", "ultimate_cron", "userprotect", "video", "views_infinite_scroll", "views_templates", "webform")
+# echo "ℹ️ Installing required modules..."
+#MODULES=("address", "admin_toolbar", "backup_migrate", "better_exposed_filters", "calendar", \
+#"captcha", "ckeditor_bgimage", "ckeditor_font", "clientside_validation", "clientside_validation_jquery", \
+#"color,", "colorbox", "commerce", "config_rewrite", \
+#"ctools", "css_editor", "devel", "dropzonejs", "duration_field", "dynamic_entity_reference", \
+#"easy_breadcrumb", "embed", "entity", "entity_browser", "entity_embed", "entity_print", \
+#"entity_reference_revisions", "entitygroupfield", "exif_orientation", "extra_field", "field_group", "fillpdf", \
+#"flexible_permissions", "ginvite", "grequest", "group", "h5p", "health_check", "honeypot", "inline_entity_form", \
+#"jquery_ui_touch_punch", "jwt", "key", "mailsystem", "message", "message_notify", "media_entity_browser", \
+#"mimemail", "name", "pathauto", "pdf", "popup_field_group", \
+#"private_message", "profile", "queue_mail", "queue_ui", "quickedit", "rdf", "recaptcha", "redirect", "restui", \
+#"role_delegation", "search_api", "simple_gmap", "state_machine", "tft", "token", "token_filter", \
+#"twig_field_value", "ultimate_cron", "userprotect", "video", "views_infinite_scroll", "views_templates", "webform")
 
-for module in "${MODULES[@]}"; do
+#for module in "${MODULES[@]}"; do
     # If then statement checking of module IS NOT enabled
-    if ! vendor/bin/drush pm:list --status=enabled --type=module | grep -q "^$module"; then
-        echo "Module is disabled. Enabling module: $module"
-        vendor/bin/drush en "$module" -y
-    else
-        echo "Module already enabled: $module"
-    fi
-done
-echo "ℹ️ Done installing required modules..."
+    #if ! vendor/bin/drush pm:list --status=enabled --type=module | grep -q "^$module"; then
+       # echo "Module is disabled. Enabling module: $module"
+        #vendor/bin/drush en "$module" -y
+    #else
+        #echo "Module already enabled: $module"
+    #fi
+#done
+#echo "ℹ️ Done installing required modules..."
 
-echo "ℹ️ Updating database..."
-vendor/bin/drush updb -y
-echo "ℹ️ Here is a list of enabled modules..."
-vendor/bin/drush pm:list --status=enabled
-echo "ℹ️ Here is a list of disabled modules..."
-vendor/bin/drush pm:list --status=disabled
+#echo "ℹ️ Updating database..."
+#vendor/bin/drush updb -y
+#echo "ℹ️ Here is a list of enabled modules..."
+#vendor/bin/drush pm:list --status=enabled
+#echo "ℹ️ Here is a list of disabled modules..."
+#vendor/bin/drush pm:list --status=disabled
 
 # -----------------------------
 # 8. Run database updates
@@ -138,7 +138,7 @@ vendor/bin/drush pm:list --status=disabled
 # 9. Clear caches & fixing php
 # -----------------------------
 
-vendor/bin/php-cs-fixer fix
+#vendor/bin/php-cs-fixer fix
 echo "Clearing caches..."
 vendor/bin/drush cr
 
