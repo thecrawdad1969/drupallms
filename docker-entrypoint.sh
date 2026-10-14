@@ -60,7 +60,7 @@ DRUPAL_ADMIN_EMAIL="${DRUPAL_ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 vendor/bin/drush status>/dev/null 2>&1
 
 # Check if drush command succeeded
-    vendor/bin/drush site:install opigno_lms \
+    vendor/bin/drush site:install opigno \
         --account-name="$DRUPAL_ADMIN_USER" \
         --account-pass="$DRUPAL_ADMIN_PASS" \
         --account-mail="$DRUPAL_ADMIN_EMAIL" \
