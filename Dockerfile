@@ -18,7 +18,7 @@ RUN apt-get update \
 
 RUN apt-add-repository ppa:phpmyadmin/ppa
 
-RUN apt update \
+RUN apt-get update \
     && apt-get install phpmyadmin \
     && apt-get clean
 
