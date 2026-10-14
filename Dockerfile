@@ -3,7 +3,9 @@
 # Use the latest patched official PHP-Apache image to reduce Debian package CVEs
 FROM php:8.4-apache-bookworm AS drupal
 
-RUN apt-add-repository ppa:phpmyadmin/ppa
+RUN apt update && \
+    apt install software-properties-common && \
+    apt-add-repository -y ppa:phpmyadmin/ppa
 
 # Install system dependencies and ensure the base image packages are patched
 RUN apt-get update \
