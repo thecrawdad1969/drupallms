@@ -12,7 +12,7 @@ RUN apt-get update \
         imagemagick openjdk-17-jre-headless python3-launchpadlib software-properties-common \
     && apt-get clean \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath phpmyadmin\
+    && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath \
     && rm -rf /var/lib/apt/lists/*
     #&& echo "root:Docker!" | chpasswd
 
@@ -44,11 +44,11 @@ COPY sshd_config /etc/ssh/sshd_config
 # Enable shell_exec by editing php.ini
 RUN echo "disable_functions =" > /usr/local/etc/php/php.ini
 
-# Install phpMyAdmin
-#RUN mkdir -p /var/www/html/phpmyadmin && \
-    #wget -O /tmp/pma.zip https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip  && \
-    #unzip /tmp/pma.zip -d /var/www/html/phpmyadmin && \
-    ##rm /tmp/pma.zip
+# Download phpMyAdmin
+RUN curl -L https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip -o /tmp/pma.zip \
+ && unzip /tmp/pma.zip -d /var/www/html \
+ && mv /var/www/html/phpMyAdmin-* /var/www/phpmyadmin \
+ && rm /tmp/pma.zip
 
 # Install Supervisor
 RUN apt-get update && apt-get install -y supervisor && \
