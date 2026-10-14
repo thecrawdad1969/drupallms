@@ -67,77 +67,28 @@ RUN chown -R www-data:www-data /var/www/html \
 #RUN composer clear-cache
 
 RUN composer config --global repo.drupal composer https://packages.drupal.org/8
-    #composer config --global repo.mozilla vcs https://github.com/mozilla/pdf.js/tree/v2.5.207
-    #composer config --global repo.furf vcs https://github.com/furf/jquery-ui-touch-punch
 
 RUN composer config --global policy.advisories.ignore dompdf/dompdf
 
 RUN composer create-project opigno/opigno-composer:3.2.7 drupal
 
-#RUN composer config repositories.asset-packagist composer https://asset-packagist.org
 
 RUN mkdir -p /var/www/html/drupal/private && \
     mkdir -p /var/www/html/drupal/web/default/files/configsync && \
     mkdir -p /var/www/html/sites/default/files
-    #mkdir -p /var/www/html/drupal/patches
-
-ENV PATH="./vendor/bin:${PATH}"
 
 # Set up Drupal
 
 WORKDIR /var/www/html/drupal
 
-#Copy php-cs-fixer rules
-COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
-
-#Add patches to be applied
-
-#COPY h5p.patch h5p.patch
-#COPY opigno.patch opigno.patch
-
-#RUN composer config --no-plugins allow-plugins.cweagans/composer-patches true
-
-#RUN composer require cweagans/composer-patches:^1.7
-
-# copy over composer.json
-COPY composer.json composer.json
-
-#RUN composer patches-repatch
-#RUN composer patches-doctor
-
-# Dry-run install to ensure all dependencies are resolvable
-RUN rm -rf vendor composer.lock
-RUN composer clear-cache
-#RUN composer update
-#RUN composer update --lock
-
 RUN composer -v install
-
-#COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-#RUN cd /drupal/web/modules/contrib/h5p && \
-   #patch -p1 < h5p.patch \
-   #&& rm /drupal/web/modules/contrib/h5p/h5p.patch
-
-#Copy patch file over
-#COPY opigno.patch /var/www/html/drupal/web/modules/contrib/opigno_lms
-#RUN cd /drupal/web/modules/contrib/opigno_lms && \
-    #patch -p2 < opigno.patch \
-    #&& rm /drupal/web/modules/contrib/opigno_lms/opigno.patch
-
-#code below is an exampe of how a patch would be applied
 
 RUN composer update drupal/core-recommended --with-dependencies
 
 # Optional: make Drush available globally in the container
-RUN ln -s /var/www/html/vendor/bin/drush /usr/local/bin/drush
+#RUN ln -s /var/www/html/vendor/bin/drush /usr/local/bin/drush
 
-COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
-
-COPY /sliderimg/slider1.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider1.jpg
-COPY /sliderimg/slider2.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider2.jpg
-COPY /sliderimg/slider3.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider3.jpg
-COPY /sliderimg/slider4.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider4.jpg
-COPY /sliderimg/slider5.jpg /var/www/html/drupal/web/themes/contrib/zeropoint/_custom/sliderimg/slider5.jpg
+#COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
 # Set permissions
 #RUN chown -R www-data:www-data /var/www/html \
