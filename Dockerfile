@@ -12,15 +12,15 @@ RUN apt-get update \
         imagemagick openjdk-17-jre-headless python3-launchpadlib software-properties-common \
     && apt-get clean \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath \
+    && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath phpmyadmin\
     && rm -rf /var/lib/apt/lists/*
     #&& echo "root:Docker!" | chpasswd
 
-RUN apt-add-repository ppa:phpmyadmin/ppa
+#RUN apt-add-repository ppa:phpmyadmin/ppa
 
-RUN apt-get update \
-    && apt-get install phpmyadmin \
-    && apt-get clean
+#RUN apt-get update \
+    #&& apt-get install phpmyadmin \
+    #&& apt-get clean
 
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
