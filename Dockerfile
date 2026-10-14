@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
         libreoffice libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-core fonts-liberation fonts-dejavu fonts-noto fonts-noto-cjk fonts-noto-color-emoji fonts-crosextra-carlito fonts-crosextra-caladea \
-        imagemagick openjdk-17-jre-headless \
+        imagemagick openjdk-17-jre-headless phpmyadmin php-mbstring php-zip php-gd php-json php-curl libapach2-mod-php\
     && apt-get clean \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath \
@@ -38,10 +38,10 @@ COPY sshd_config /etc/ssh/sshd_config
 RUN echo "disable_functions =" > /usr/local/etc/php/php.ini
 
 # Install phpMyAdmin
-RUN mkdir -p /var/www/html/phpmyadmin && \
-    wget -O /tmp/pma.zip https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip  && \
-    unzip /tmp/pma.zip -d /var/www/html/phpmyadmin && \
-    rm /tmp/pma.zip
+#RUN mkdir -p /var/www/html/phpmyadmin && \
+    #wget -O /tmp/pma.zip https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip  && \
+    #unzip /tmp/pma.zip -d /var/www/html/phpmyadmin && \
+    ##rm /tmp/pma.zip
 
 # Install Supervisor
 RUN apt-get update && apt-get install -y supervisor && \
@@ -86,13 +86,14 @@ RUN composer -v install
 RUN composer update drupal/core-recommended --with-dependencies
 
 # Optional: make Drush available globally in the container
-#RUN ln -s /var/www/html/vendor/bin/drush /usr/local/bin/drush
+RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 
-#COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
+
+COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
 # Set permissions
-#RUN chown -R www-data:www-data /var/www/html \
-    #&& chmod -R 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
 COPY drupal.conf /etc/apache2/sites-available/drupal.conf
 RUN mkdir -p /usr/local/apache2/sites-enabled \

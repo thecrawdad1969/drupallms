@@ -60,13 +60,17 @@ DRUPAL_ADMIN_EMAIL="${DRUPAL_ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 #vendor/bin/drush status>/dev/null 2>&1
 
 # Check if drush command succeeded
-    #vendor/bin/drush site:install \
-        #--account-name="$DRUPAL_ADMIN_USER" \
-        #--account-pass="$DRUPAL_ADMIN_PASS" \
-        #--account-mail="$DRUPAL_ADMIN_EMAIL" \
-        #--site-name="$DRUPAL_SITE_NAME" \
-        #--db-url=mysql://thecrawdad87:Dtag1984!@drupal-mysql-srv.mysql.database.azure.com:3306/drupal_lms \
-        #-y
+if [ $? -eq 0 ]; then
+    echo "Drupal already installed."
+else
+    drupal/web/drush site:install \
+        --account-name="$DRUPAL_ADMIN_USER" \
+        --account-pass="$DRUPAL_ADMIN_PASS" \
+        --account-mail="$DRUPAL_ADMIN_EMAIL" \
+        --site-name="$DRUPAL_SITE_NAME" \
+        --db-url=mysql://thecrawdad87:Dtag1984!@drupal-mysql-srv.mysql.database.azure.com:3306/drupal_lms \
+        -y
+fi
 
 
 # -----------------------------
@@ -151,7 +155,7 @@ vendor/bin/drush cr
 [ "$DEBUG" = "true" ] && set -x
 
 # Generate config.inc.php if missing
-CONFIG_FILE="/var/www/html/config.inc.php"
+CONFIG_FILE="/etc/phpmyadmin/config.inc.php"
 if [ ! -f "$CONFIG_FILE" ]; then
     echo "Generating default config.inc.php..."
     cat > "$CONFIG_FILE" <<EOF
