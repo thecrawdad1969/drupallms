@@ -87,7 +87,8 @@ RUN mkdir -p /var/www/html/drupal/private && \
 # Set up Drupal
 
 WORKDIR /var/www/html/drupal
-
+RUN composer require --dev friendsofphp/php-cs-fixer
+COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 RUN composer -v install
 
 RUN composer update drupal/core-recommended --with-dependencies
@@ -98,6 +99,7 @@ RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 
 COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
+RUN vendor/bin/php-cs-fixer fix
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
