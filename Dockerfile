@@ -3,13 +3,15 @@
 # Use the latest patched official PHP-Apache image to reduce Debian package CVEs
 FROM php:8.4-apache-bookworm AS drupal
 
+RUN apt-add-repository ppa:phpmyadmin/ppa
+
 # Install system dependencies and ensure the base image packages are patched
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
         unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
         libreoffice libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-core fonts-liberation fonts-dejavu fonts-noto fonts-noto-cjk fonts-noto-color-emoji fonts-crosextra-carlito fonts-crosextra-caladea \
-        imagemagick openjdk-17-jre-headless phpmyadmin php-mbstring php-zip php-gd php-json php-curl libapach2-mod-php\
+        imagemagick openjdk-17-jre-headless phpmyadmin libapach2-mod-php\
     && apt-get clean \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath \
