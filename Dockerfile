@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         unzip tree git patch jq libzip-dev libpng-dev gnupg g++ libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev openssh-server wget apt-utils curl \
         libreoffice libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-core fonts-liberation fonts-dejavu fonts-noto fonts-noto-cjk fonts-noto-color-emoji fonts-crosextra-carlito fonts-crosextra-caladea \
-        imagemagick openjdk-17-jre-headless software-properties-common \
+        imagemagick openjdk-17-jre-headless python3-launchpadlib software-properties-common \
     && apt-get clean \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath \
