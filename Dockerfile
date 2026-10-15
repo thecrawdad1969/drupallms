@@ -44,15 +44,13 @@ COPY sshd_config /etc/ssh/sshd_config
 # Enable shell_exec by editing php.ini
 RUN echo "disable_functions =" > /usr/local/etc/php/php.ini
 
-RUN mkdir -p /var/www/html/phpmyadmin
+# Install phpMyAdmin
+RUN mkdir -p /var/www/html/phpmyadmin && \
+    wget -O /tmp/pma.zip https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip  && \
+    unzip /tmp/pma.zip -d /var/www/html/phpmyadmin && \
+    rm /tmp/pma.zip
 
-# Download phpMyAdmin
-RUN curl -L https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip -o /tmp/pma.zip \
- && unzip /tmp/pma.zip -d /var/www/html \
- #&& mv /var/www/html-* /var/www/html/phpmyadmin \
- && rm /tmp/pma.zip
-
- RUN mkdir -p  /etc/phpmyadmin
+RUN mkdir -p /etc/phpmyadmin
 
 # Install Supervisor
 RUN apt-get update && apt-get install -y supervisor && \
@@ -101,10 +99,10 @@ RUN composer require h5p/h5p-core:^1.27 h5p/h5p-editor:^1.24.4
 
 RUN composer -v install
 
-COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-RUN cd /drupal/web/modules/contrib/h5p && \
+COPY h5p.patch /web/modules/contrib/h5p
+RUN cd /web/modules/contrib/h5p && \
    patch -p1 < h5p.patch \
-   && rm /drupal/web/modules/contrib/h5p/h5p.patch
+   && rm /web/modules/contrib/h5p/h5p.patch
 
 RUN composer update drupal/core-recommended --with-dependencies
 
