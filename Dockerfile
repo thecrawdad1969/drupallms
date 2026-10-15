@@ -89,21 +89,21 @@ RUN mkdir -p /var/www/html/drupal/private && \
 # Set up Drupal
 
 WORKDIR /var/www/html/drupal
-RUN composer require --dev friendsofphp/php-cs-fixer
-COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
+#RUN composer require --dev friendsofphp/php-cs-fixer
+#COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
 # Remove a specific line or pattern from composer.json
 RUN sed -i '/"replace": *{/,/}/d' composer.json
 
-RUN composer require h5p/h5p-core:^1.27 h5p/h5p-editor:^1.24.4
+#RUN composer require h5p/h5p-core:^1.27 h5p/h5p-editor:^1.24.4
 
 RUN composer -v install
 
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 #New pathching
-RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
-   patch -p1 < h5p.patch \
-   && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
+#RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
+   #patch -p1 < h5p.patch \
+   #&& rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
 
 #RUN /vendor/bin/drush cr
 
@@ -121,7 +121,7 @@ RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-RUN vendor/bin/php-cs-fixer fix
+#RUN vendor/bin/php-cs-fixer fix
 
 COPY drupal.conf /etc/apache2/sites-available/drupal.conf
 RUN mkdir -p /usr/local/apache2/sites-enabled \
