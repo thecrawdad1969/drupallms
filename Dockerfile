@@ -100,7 +100,7 @@ RUN composer require h5p/h5p-core:^1.27 h5p/h5p-editor:^1.24.4
 RUN composer -v install
 
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-
+#New pathching
 RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
    patch -p1 < h5p.patch \
    && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
