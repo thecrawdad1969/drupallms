@@ -89,6 +89,12 @@ RUN mkdir -p /var/www/html/drupal/private && \
 WORKDIR /var/www/html/drupal
 RUN composer require --dev friendsofphp/php-cs-fixer
 COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
+
+# Remove a specific line or pattern from composer.json
+RUN sed -i '/^.*'"replace": {"h5p/h5p-core": "*","h5p/h5p-editor": "*"}'.*/d' composer.json
+
+RUN composer require h5p/h5p-core:^1.27 h5p/h5p-editor:^1.24.4
+
 RUN composer -v install
 
 RUN composer update drupal/core-recommended --with-dependencies
