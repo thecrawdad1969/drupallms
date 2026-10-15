@@ -103,7 +103,7 @@ COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 
 RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
    patch -p1 < h5p.patch \
-   && rm /web/modules/contrib/h5p/h5p.patch
+   && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
 
 RUN composer update drupal/core-recommended --with-dependencies
 
