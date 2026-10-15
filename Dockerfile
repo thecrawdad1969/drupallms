@@ -99,6 +99,9 @@ RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 
 COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
+RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini
+
+
 RUN vendor/bin/php-cs-fixer fix
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
