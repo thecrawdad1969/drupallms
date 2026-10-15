@@ -1,8 +1,8 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->in([__DIR__ . '/'])
-    ->name('*.php');
+    ->in([__DIR__ . '/', '/src'])
+    ->name('*.php', '*.module');
 
 return (new PhpCsFixer\Config())
     ->setFinder($finder)

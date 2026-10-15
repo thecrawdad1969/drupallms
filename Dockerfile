@@ -115,11 +115,11 @@ COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
 RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini
 
-
-RUN vendor/bin/php-cs-fixer fix
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
+
+RUN vendor/bin/php-cs-fixer fix
 
 COPY drupal.conf /etc/apache2/sites-available/drupal.conf
 RUN mkdir -p /usr/local/apache2/sites-enabled \
