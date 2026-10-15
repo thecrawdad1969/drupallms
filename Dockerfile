@@ -91,7 +91,7 @@ RUN composer require --dev friendsofphp/php-cs-fixer
 COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
 # Remove a specific line or pattern from composer.json
-RUN sed -i '/^.*'"replace": {"h5p/h5p-core": "*","h5p/h5p-editor": "*"}'.*/d' composer.json
+RUN sed -i '/"replace": *{/,/}/d' composer.json
 
 RUN composer require h5p/h5p-core:^1.27 h5p/h5p-editor:^1.24.4
 
