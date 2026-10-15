@@ -47,7 +47,7 @@ RUN echo "disable_functions =" > /usr/local/etc/php/php.ini
 # Download phpMyAdmin
 RUN curl -L https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip -o /tmp/pma.zip \
  && unzip /tmp/pma.zip -d /var/www/html \
- && mv /var/www/html/phpMyAdmin-5.2.3-all-languages/phpMyAdmin-5.2.3-all-languages-* /var/www/html/phpmyadmin \
+ && mv /var/www/html/phpMyAdmin-5.2.3-all-languages-* /var/www/html/phpmyadmin \
  && rm /tmp/pma.zip
 
  RUN mkdir -p  /etc/phpmyadmin
