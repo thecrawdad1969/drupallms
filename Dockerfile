@@ -44,6 +44,8 @@ COPY sshd_config /etc/ssh/sshd_config
 # Enable shell_exec by editing php.ini
 RUN echo "disable_functions =" > /usr/local/etc/php/php.ini
 
+RUN mkdir -p /var/www/html/phpmyadmin
+
 # Download phpMyAdmin
 RUN curl -L https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip -o /tmp/pma.zip \
  && unzip /tmp/pma.zip -d /var/www/html \
