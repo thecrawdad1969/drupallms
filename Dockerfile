@@ -99,8 +99,9 @@ RUN composer require h5p/h5p-core:^1.27 h5p/h5p-editor:^1.24.4
 
 RUN composer -v install
 
-COPY h5p.patch /web/modules/contrib/h5p
-RUN cd /web/modules/contrib/h5p && \
+COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
+
+RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
    patch -p1 < h5p.patch \
    && rm /web/modules/contrib/h5p/h5p.patch
 
