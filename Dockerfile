@@ -1,7 +1,7 @@
 #Dockerfile with modules
 
 # Use the latest patched official PHP-Apache image to reduce Debian package CVEs
-FROM php:8.4-apache-bookworm AS drupal
+FROM php:8.1-apache-bookworm AS drupal
 
 # Install system dependencies and ensure the base image packages are patched
 RUN apt-get update \
@@ -80,7 +80,6 @@ RUN composer config --global repo.drupal composer https://packages.drupal.org/8
 RUN composer config --global policy.advisories.ignore dompdf/dompdf
 
 RUN composer create-project opigno/opigno-composer:3.2.7 drupal
-
 
 RUN mkdir -p /var/www/html/drupal/private && \
     mkdir -p /var/www/html/drupal/web/default/files/configsync && \
