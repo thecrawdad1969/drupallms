@@ -57,6 +57,8 @@ DRUPAL_ADMIN_EMAIL="${DRUPAL_ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 # -----------------------------
 # 5. Install Drupal if not installed#
 # -----------------------------
+vendor/bin/drush status
+
 vendor/bin/drush status>/dev/null 2>&1
 
 # Check if drush command succeeded

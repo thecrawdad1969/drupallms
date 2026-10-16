@@ -1,7 +1,7 @@
 #Dockerfile with modules
 
 # Use the latest patched official PHP-Apache image to reduce Debian package CVEs
-FROM php:8.1-apache-bookworm AS drupal
+FROM php:8.2-apache-bookworm AS drupal
 
 # Install system dependencies and ensure the base image packages are patched
 RUN apt-get update \
