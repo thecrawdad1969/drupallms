@@ -98,6 +98,8 @@ RUN composer require drupal/h5p:^2.0@beta
 
 RUN composer -v install
 
+RUN sed -i 's/\${/{\$/g' /var/www/html/drupal/web/modules/contrib/opigno_learning_path/opigno_learning_path.module
+
 #Nh5p pathching
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 
