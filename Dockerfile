@@ -106,7 +106,7 @@ COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 
 #RUN /vendor/bin/drush cr
 
-RUN composer update drupal/core-recommended --with-dependencies
+#RUN composer update drupal/core-recommended --with-dependencies
 
 # Optional: make Drush available globally in the container
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
