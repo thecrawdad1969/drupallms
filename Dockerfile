@@ -145,7 +145,7 @@ RUN a2ensite drupal.conf
 # Expose ports: Drupal (80), SSH (2222), phpMyAdmin (8081)
 EXPOSE 80 2222 8000 8081
 
-RUN sed -i 's/\r$//' /docker-entrypoint.sh
+#RUN sed -i 's/\r$//' /docker-entrypoint.sh
 
 # Start Supervisor
 CMD ["/usr/bin/supervisord", "-n"]
