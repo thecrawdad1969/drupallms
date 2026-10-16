@@ -100,9 +100,9 @@ RUN composer -v install
 
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 #New pathching
-#RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
-   #patch -p1 < h5p.patch \
-   #&& rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
+RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
+   patch -p1 < h5p.patch \
+   && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
 
 #RUN /vendor/bin/drush cr
 
