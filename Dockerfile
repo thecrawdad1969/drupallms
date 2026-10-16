@@ -122,11 +122,11 @@ RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 
 COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
-RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini && /
-    echo "upload_max_filesize = 512M" >> /usr/local/etc/php/php.ini && /
-    echo "post_max_size = 520M" >> /usr/local/etc/php/php.ini && /
-    echo "max_execution_time = 600" >> /usr/local/etc/php/php.ini && /
-    echo "max_input_time = 600" >> /usr/local/etc/php/php.ini
+RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini
+RUN echo "upload_max_filesize = 512M" >> /usr/local/etc/php/php.ini
+RUN echo "post_max_size = 520M" >> /usr/local/etc/php/php.ini
+RUN echo "max_execution_time = 600" >> /usr/local/etc/php/php.ini
+RUN echo "max_input_time = 600" >> /usr/local/etc/php/php.ini
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
