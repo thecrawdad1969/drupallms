@@ -1,7 +1,7 @@
 #Dockerfile with modules
 
 # Use the latest patched official PHP-Apache image to reduce Debian package CVEs
-FROM php:8.2-apache-bookworm AS drupal
+FROM php:8.1-apache-bookworm AS drupal
 
 # Install system dependencies and ensure the base image packages are patched
 RUN apt-get update \
@@ -98,7 +98,7 @@ RUN composer require drupal/h5p:^2.0@beta
 
 RUN composer -v install
 
-RUN sed -i 's/\${/{\$/g' /var/www/html/drupal/web/modules/contrib/opigno_learning_path/opigno_learning_path.module
+#RUN sed -i 's/\${/{\$/g' /var/www/html/drupal/web/modules/contrib/opigno_learning_path/opigno_learning_path.module
 
 #Nh5p pathching
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
@@ -108,11 +108,11 @@ RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
    && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
 
 # opigno patching
-COPY twig.patch /var/www/html/drupal/web/modules/contrib/opigno_learning_path
+#COPY twig.patch /var/www/html/drupal/web/modules/contrib/opigno_learning_path
 
-RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
-   patch -p1 < twig.patch \
-   && rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
+#RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
+   #patch -p1 < twig.patch \
+   #&& rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
 
 #RUN /vendor/bin/drush cr
 
