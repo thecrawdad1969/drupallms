@@ -98,11 +98,19 @@ RUN composer require drupal/h5p:^2.0@beta
 
 RUN composer -v install
 
+#Nh5p pathching
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
-#New pathching
+
 RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
    patch -p1 < h5p.patch \
    && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
+
+# opigno patching
+COPY twig.patch /var/www/html/drupal/web/modules/contrib/opigno_learning_path
+
+RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
+   patch -p1 < twig.patch \
+   && rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
 
 #RUN /vendor/bin/drush cr
 
@@ -114,7 +122,11 @@ RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 
 COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
-RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini
+RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini && /
+    echo "upload_max_filesize = 512M" >> /usr/local/etc/php/php.ini && /
+    echo "post_max_size = 520M" >> /usr/local/etc/php/php.ini && /
+    echo "max_execution_time = 600" >> /usr/local/etc/php/php.ini && /
+    echo "max_input_time = 600" >> /usr/local/etc/php/php.ini
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \

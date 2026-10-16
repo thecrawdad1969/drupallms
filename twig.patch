@@ -1,0 +1,16 @@
+diff --git a/src/TwigExtension/DefaultTwigExtension.php b/modules/contrib/opigno_learning_path/src/TwigExtension/DefaultTwigExtension.php
+index 4d74a4e019..127e5a2c9e 100644
+--- a/src/TwigExtension/DefaultTwigExtension.php
++++ b/src/TwigExtension/DefaultTwigExtension.php
+@@ -167,7 +167,10 @@ public function getFunctions() {
+    * {@inheritdoc}
+    */
+   public function getOperators() {
+-    return [];
++    return [
++      [],
++      [],
++    ];
+   }
+
+   /**
