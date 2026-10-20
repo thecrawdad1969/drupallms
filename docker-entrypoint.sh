@@ -16,6 +16,8 @@ ADMIN_USER="${ADMIN_USER:-thecrawdad87}"
 ADMIN_PASS="${ADMIN_PASS:-Dtag1984!123!}"
 ADMIN_EMAIL="${ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 
+composer clear-cache
+
 vendor/bin/drush status
 
 vendor/bin/drush status>/dev/null 2>&1
