@@ -18,13 +18,20 @@ ADMIN_EMAIL="${ADMIN_EMAIL:-thecrawdad87@gmail.com}"
 
 vendor/bin/drush status
 
-echo "🛠 Running Drupal site installation..."
+vendor/bin/drush status>/dev/null 2>&1
+
+# Check if drush command succeeded
+if [ $? -eq 0 ]; then
+    echo "Drupal already installed."
+else
+    echo "🛠 Running Drupal site installation..."
     vendor/bin/drush site:install \
         --db-url="mysql://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}" \
         --account-name="${ADMIN_USER:-admin}" \
         --account-pass="${ADMIN_PASS:-admin}" \
         --site-name="${SITE_NAME:-Opigno LMS}" \
         -y
+fi
 
 # Apache environment setup
 echo "Configuring Apache..."

@@ -14,14 +14,6 @@ RUN apt-get update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo pdo_mysql gd mbstring dom xml zip bcmath \
     && rm -rf /var/lib/apt/lists/*
-    #&& echo "root:Docker!" | chpasswd
-
-#RUN apt-add-repository ppa:phpmyadmin/ppa
-
-#RUN apt-get update \
-    #&& apt-get install phpmyadmin \
-    #&& apt-get clean
-
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get update \
@@ -88,8 +80,6 @@ RUN mkdir -p /var/www/html/drupal/private && \
 # Set up Drupal
 
 WORKDIR /var/www/html/drupal
-#RUN composer require --dev friendsofphp/php-cs-fixer
-#COPY .php-cs-fixer.php /var/www/html/drupal/.php-cs-fixer.php
 
 # Remove a specific line or pattern from composer.json removed this
 RUN sed -i '/"replace": *{/,/}/d' composer.json
@@ -98,25 +88,12 @@ RUN composer require drupal/h5p:^2.0@beta
 
 RUN composer -v install
 
-#RUN sed -i 's/\${/{\$/g' /var/www/html/drupal/web/modules/contrib/opigno_learning_path/opigno_learning_path.module
-
 #Nh5p pathching
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 
 RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
    patch -p1 < h5p.patch \
    && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
-
-# opigno patching
-#COPY twig.patch /var/www/html/drupal/web/modules/contrib/opigno_learning_path
-
-#RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
-   #patch -p1 < twig.patch \
-   #&& rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
-
-#RUN /vendor/bin/drush cr
-
-#RUN composer update drupal/core-recommended --with-dependencies
 
 # Optional: make Drush available globally in the container
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
