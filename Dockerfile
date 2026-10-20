@@ -88,7 +88,7 @@ RUN composer require drupal/h5p:^2.0@beta
 
 RUN composer require twig/twig:^3.0
 
-RUN compoer update
+RUN composer update
 
 RUN composer update drupal/claro
 
