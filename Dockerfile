@@ -1,7 +1,7 @@
 #Dockerfile with modules
 
 # Use the latest patched official PHP-Apache image to reduce Debian package CVEs
-FROM php:8.1-apache-bookworm AS drupal
+FROM php:8.2-apache-bookworm AS drupal
 
 # Install system dependencies and ensure the base image packages are patched
 RUN apt-get update \
@@ -115,11 +115,11 @@ RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
    && rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
 
 #Update patch
-COPY Updater.patch /src/Updater.patch
+#COPY Updater.patch /src/Updater.patch
 
-RUN cd /src && \
-   patch -p1 < Updater.patch \
-   && rm /src/Updater.patch
+#RUN cd /src && \
+   #patch -p1 < Updater.patch \
+   #&& rm /src/Updater.patch
 
 # Optional: make Drush available globally in the container
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
