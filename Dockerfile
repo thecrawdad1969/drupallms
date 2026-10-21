@@ -67,8 +67,8 @@ RUN chown -R www-data:www-data /var/www/html \
 
 #RUN composer clear-cache
 
-RUN composer config --global repositories.drupal https://packages.drupal.org/8
-RUN composer config --global repositories.opigno https://packagist.org
+RUN composer config --global repositories.drupal composer https://packages.drupal.org/8
+RUN composer config --global repositories.opigno composer https://packagist.org
 
 
 RUN composer config --global policy.advisories.ignore dompdf/dompdf
