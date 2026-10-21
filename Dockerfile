@@ -114,6 +114,13 @@ RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
    patch -p1 < twig.patch \
    && rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
 
+#Update patch
+COPY Updater.patch /src/Updater.patch
+
+RUN cd /src && \
+   patch -p1 < Updater.patch \
+   && rm /src/Updater.patch
+
 # Optional: make Drush available globally in the container
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 

@@ -1,0 +1,14 @@
+diff --git a/src/Updater.php b/src/Updater.php
+index 08e7fad..654da22 100644
+--- a/src/Updater.php
++++ b/src/Updater.php
+@@ -430,6 +430,9 @@ class Updater implements UpdaterInterface {
+         ->getStorage($entity_type);
+       $id = $entity_storage->getIDFromConfigName($config_name, $entity_storage->getEntityType()->getConfigPrefix());
+       $entity = $entity_storage->load($id);
++      if (!$entity) {
++        return FALSE;
++      }
+       $entity = $entity_storage->updateFromStorageRecord($entity, $update_config_data);
+       $entity->save();
+     }
