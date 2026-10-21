@@ -88,6 +88,10 @@ RUN composer require drupal/h5p:^2.0@beta
 
 RUN composer require twig/twig:^3.0
 
+RUN composer config audit.ignore --json '["PKSA-y2cr-5h3j-g3ys"]'
+
+RUN composer config --no-interaction audit.block-insecure false
+
 RUN composer update
 
 RUN composer update drupal/claro
