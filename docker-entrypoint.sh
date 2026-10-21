@@ -26,14 +26,14 @@ vendor/bin/drush status>/dev/null 2>&1
 #if [ $? -eq 0 ]; then
     #echo "Drupal already installed."
 #else
-    echo "🛠 Running Drupal site installation..."
-    vendor/bin/drush site:install \
-        --db-url="mysql://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}" \
-        --account-name="thecrawdad87" \
-        --account-pass="Dtag1984!123!" \
-        --account-mail="thecrawdad87@gmail.com" \
-        --site-name="ILCA" \
-        -y, -vvv
+    #echo "🛠 Running Drupal site installation..."
+    #vendor/bin/drush site:install \
+        #--db-url="mysql://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}" \
+        #--account-name="thecrawdad87" \
+        #--account-pass="Dtag1984!123!" \
+        #--account-mail="thecrawdad87@gmail.com" \
+        #--site-name="ILCA" \
+        #-y, -vvv
 #fi
 
 # Apache environment setup
