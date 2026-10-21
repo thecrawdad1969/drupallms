@@ -11,10 +11,10 @@ set -o pipefail
 : "${DB_NAME:drupal_lms}"
 
 # Optional vars
-SITE_NAME="${SITE_NAME:-ILCA}"
-ADMIN_USER="${ADMIN_USER:-thecrawdad87}"
-ADMIN_PASS="${ADMIN_PASS:-Dtag1984!123!}"
-ADMIN_EMAIL="${ADMIN_EMAIL:-thecrawdad87@gmail.com}"
+SITE_NAME="${SITE_NAME:ILCA}"
+ADMIN_USER="${ADMIN_USER:thecrawdad87}"
+ADMIN_PASS="${ADMIN_PASS:Dtag1984!123!}"
+ADMIN_EMAIL="${ADMIN_EMAIL:thecrawdad87@gmail.com}"
 
 vendor/bin/drush status
 
@@ -29,9 +29,9 @@ vendor/bin/drush status>/dev/null 2>&1
     echo "🛠 Running Drupal site installation..."
     vendor/bin/drush site:install \
         --db-url="mysql://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}" \
-        --account-name="${ADMIN_USER:-admin}" \
-        --account-pass="${ADMIN_PASS:-admin}" \
-        --site-name="${SITE_NAME:-Opigno LMS}" \
+        --account-name="thecrawdad87" \
+        --account-pass="Dtag1984!123!" \
+        --site-name="ILCA" \
         -y
 #fi
 
