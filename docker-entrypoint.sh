@@ -22,6 +22,13 @@ vendor/bin/drush cache:rebuild
 
 vendor/bin/drush status>/dev/null 2>&1
 
+MODULES=("block", "views", "editor", "filter", "image", "file")
+
+
+for module in "${MODULES[@]}"; do
+    vendor/bin/drush en "$module" -y
+done
+
 # Check if drush command succeeded
 #if [ $? -eq 0 ]; then
     #echo "Drupal already installed."
