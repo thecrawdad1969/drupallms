@@ -1,7 +1,7 @@
 #Dockerfile with modules
 
 # Use the latest patched official PHP-Apache image to reduce Debian package CVEs
-FROM php:8.3-apache-bookworm AS drupal
+FROM php:8.1-apache-bookworm AS drupal
 
 # Install system dependencies and ensure the base image packages are patched
 RUN apt-get update \
@@ -84,9 +84,9 @@ RUN mkdir -p /var/www/html/drupal/private && \
 WORKDIR /var/www/html/drupal
 
 # Remove a specific line or pattern from composer.json removed this
-RUN sed -i '/"replace": *{/,/}/d' composer.json
+#RUN sed -i '/"replace": *{/,/}/d' composer.json
 
-RUN composer require drupal/h5p:^2.0@beta
+#RUN composer require drupal/h5p:^2.0@beta
 
 RUN composer require twig/twig:^3.0
 
