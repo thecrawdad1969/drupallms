@@ -127,7 +127,7 @@ RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 
 
-COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
+#COPY custom-settings.php /var/www/html/drupal/web/sites/default/settings.php
 
 RUN echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini
 RUN echo "upload_max_filesize = 512M" >> /usr/local/etc/php/php.ini
