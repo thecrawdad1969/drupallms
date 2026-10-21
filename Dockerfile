@@ -103,6 +103,13 @@ RUN cd /var/www/html/drupal/web/modules/contrib/h5p && \
    patch -p1 < h5p.patch \
    && rm /var/www/html/drupal/web/modules/contrib/h5p/h5p.patch
 
+# opigno patching
+COPY twig.patch /var/www/html/drupal/web/modules/contrib/opigno_learning_path
+
+RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
+   patch -p1 < twig.patch \
+   && rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
+
 # Optional: make Drush available globally in the container
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
 
