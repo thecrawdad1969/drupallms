@@ -31,8 +31,9 @@ vendor/bin/drush status>/dev/null 2>&1
         --db-url="mysql://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}" \
         --account-name="thecrawdad87" \
         --account-pass="Dtag1984!123!" \
+        --account-mail="thecrawdad87@gmail.com"
         --site-name="ILCA" \
-        -y
+        -y, -vvv
 #fi
 
 # Apache environment setup
