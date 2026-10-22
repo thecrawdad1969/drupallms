@@ -102,6 +102,8 @@ RUN composer clear-cache
 
 RUN composer -v install
 
+RUN ls -la /var/www/html/drupal/web/modules/contrib/
+
 #Nh5p pathching
 COPY h5p.patch /var/www/html/drupal/web/modules/contrib/h5p
 
@@ -120,8 +122,8 @@ RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
 COPY  Updater.patch /var/www/html/drupal/web/modules/contrib/update_helper
 
 RUN cd /var/www/html/drupal/web/modules/contrib/update_helper && \
-    patch -p0 < Updater.patch && \
-    rm /var/www/html/drupal/web/modules/contrib/update_helper/Updater.patch
+    patch -p0 < Updater.patch \
+    && rm /var/www/html/drupal/web/modules/contrib/update_helper/Updater.patch
 
 # Optional: make Drush available globally in the container
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
