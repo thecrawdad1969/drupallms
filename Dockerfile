@@ -73,7 +73,7 @@ RUN composer config --global repositories.opigno composer https://packagist.org
 
 RUN composer config --global policy.advisories.ignore dompdf/dompdf
 
-RUN composer create-project opigno/opigno-composer:3.2.7 drupal
+RUN composer create-project opigno/opigno-composer drupal
 
 RUN mkdir -p /var/www/html/drupal/private && \
     mkdir -p /var/www/html/drupal/web/default/files/configsync && \
@@ -119,11 +119,11 @@ RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
    && rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
 
 #Update patch
-COPY  Updater.patch /var/www/html/drupal/web/modules/contrib/update_helper
+#COPY  Updater.patch /var/www/html/drupal/web/modules/contrib/update_helper
 
-RUN cd /var/www/html/drupal/web/modules/contrib/update_helper && \
-    patch -p0 < Updater.patch \
-    && rm /var/www/html/drupal/web/modules/contrib/update_helper/Updater.patch
+#RUN cd /var/www/html/drupal/web/modules/contrib/update_helper && \
+    #patch -p0 < Updater.patch \
+    #&& rm /var/www/html/drupal/web/modules/contrib/update_helper/Updater.patch
 
 # Optional: make Drush available globally in the container
 RUN ln -s /var/www/html/drupal/drush /usr/local/bin/drush
