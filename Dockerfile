@@ -117,7 +117,7 @@ RUN cd /var/www/html/drupal/web/modules/contrib/opigno_learning_path && \
    && rm /var/www/html/drupal/web/modules/contrib/opigno_learning_path/twig.patch
 
 #Update patch
-RUN COPY  Updater.patch /var/www/html/drupal/web/modules/contrib/update_helper
+COPY  Updater.patch /var/www/html/drupal/web/modules/contrib/update_helper
 
 RUN cd /var/www/html/drupal/web/modules/contrib/update_helper && \
     patch -p0 < Updater.patch && \
