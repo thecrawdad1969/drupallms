@@ -20,7 +20,7 @@ vendor/bin/drush status
 
 vendor/bin/drush cache:rebuild
 
-vendor/bin/drush status>/dev/null 2>&1
+#vendor/bin/drush status>/dev/null 2>&1
 
 #MODULES=("block", "views", "editor", "filter", "image", "file")
 
