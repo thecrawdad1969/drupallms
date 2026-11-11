@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '75a377b9-27ce-4c0a-bbc6-68822b084c18'
+  dockerRegistryServiceConnection: '758956cd-3b46-4ccc-a431-6c7bc7a5ce12'
   imageRepository: 'drupallms'
   containerRegistry: 'ilcacontainers.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
