@@ -71,7 +71,7 @@ RUN composer config --global repositories.drupal composer https://packages.drupa
 RUN composer config --global repositories.opigno composer https://packagist.org
 
 
-RUN composer config --global policy.advisories.ignore dompdf/dompdf
+RUN composer config --global policy.advisories.ignore dompdf/dompdf drupal/mimemail
 
 RUN composer create-project opigno/opigno-composer drupal
 
