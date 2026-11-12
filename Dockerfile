@@ -144,9 +144,9 @@ RUN chown -R www-data:www-data /var/www/html \
 
 #RUN vendor/bin/php-cs-fixer fix
 
-COPY drupal.conf /etc/apache2/sites-available/drupal.conf
-RUN mkdir -p /usr/local/apache2/sites-enabled \
-    && ln -s /usr/local/apache2/sites-available/drupal.conf /usr/local/apache2/sites-enabled/drupal.conf
+#COPY drupal.conf /etc/apache2/sites-available/drupal.conf
+#RUN mkdir -p /usr/local/apache2/sites-enabled \
+    #& ln -s /usr/local/apache2/sites-available/drupal.conf /usr/local/apache2/sites-enabled/drupal.conf
 
 RUN a2ensite drupal.conf
 
