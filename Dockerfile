@@ -158,4 +158,6 @@ EXPOSE 80 2222 8000 8081
 # Start Supervisor
 #CMD ["/usr/bin/supervisord", "-n"]
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["apachectl", "-D", "FOREGROUND"]
