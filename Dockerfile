@@ -156,6 +156,6 @@ EXPOSE 80 2222 8000 8081
 #RUN sed -i 's/\r$//' /docker-entrypoint.sh
 
 # Start Supervisor
-CMD ["/usr/bin/supervisord", "-n"]
+#CMD ["/usr/bin/supervisord", "-n"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
