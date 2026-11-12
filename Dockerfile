@@ -148,7 +148,7 @@ RUN chown -R www-data:www-data /var/www/html \
 #RUN mkdir -p /usr/local/apache2/sites-enabled \
     #& ln -s /usr/local/apache2/sites-available/drupal.conf /usr/local/apache2/sites-enabled/drupal.conf
 
-RUN a2ensite drupal.conf
+#RUN a2ensite drupal.conf
 
 # Expose ports: Drupal (80), SSH (2222), phpMyAdmin (8081)
 EXPOSE 80 2222 8000 8081
