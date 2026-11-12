@@ -138,17 +138,18 @@ RUN echo "post_max_size = 520M" >> /usr/local/etc/php/php.ini
 RUN echo "max_execution_time = 600" >> /usr/local/etc/php/php.ini
 RUN echo "max_input_time = 600" >> /usr/local/etc/php/php.ini
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-
 #RUN vendor/bin/php-cs-fixer fix
 
-#COPY drupal.conf /etc/apache2/sites-available/drupal.conf
+COPY drupal.conf /etc/apache2/sites-available/drupal.conf
 #RUN mkdir -p /usr/local/apache2/sites-enabled \
     #& ln -s /usr/local/apache2/sites-available/drupal.conf /usr/local/apache2/sites-enabled/drupal.conf
 
-#RUN a2ensite drupal.conf
+RUN a2dissite 000-default.conf \
+    && a2ensite drupal.conf
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
 # Expose ports: Drupal (80), SSH (2222), phpMyAdmin (8081)
 EXPOSE 80 2222 8000 8081
